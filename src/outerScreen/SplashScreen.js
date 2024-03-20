@@ -4,13 +4,14 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 
 const SplashScreen = () => {
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//     //   navigation.navigate('Home'); // Navigate to the 'Home' screen after 2 seconds
-//     }, 2000); 
+    const navigation = useNavigation();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate('Login'); // Navigate to the 'Home' screen after 2 seconds
+    }, 2000); 
 
-//     return () => clearTimeout(timer);
-//   }, [navigation]); // Dependency array to ensure useEffect runs only once
+    return () => clearTimeout(timer);
+  }, [navigation]); // Dependency array to ensure useEffect runs only once
 
   return (
     <View style={styles.container}>

@@ -5,9 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreen from '../outerScreen/LoginScreen';
 import RegisterScreen from '../outerScreen/RegisterScreen';
 import SplashScreen from '../outerScreen/SplashScreen';
-
-
-
+import DrawerNavigation from '../navigation/DrawerNavigation';
 
 
 const RootScreen = () => {
@@ -16,11 +14,27 @@ const RootScreen = () => {
     <NavigationContainer>
       <Stack.Navigator  >
         <Stack.Screen
-          name="Home"
+          initialRouteName="Splash"
+          name="Splash"
           component={SplashScreen}
           options={{headerShown:false}}
         />
-        <Stack.Screen name="Profile" component={RegisterScreen} />
+         <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{headerShown:false}}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{headerShown:false}}
+        />
+         <Stack.Screen
+          name="drawer" 
+          component={DrawerNavigation} 
+          options={{headerShown:false}}
+          />
+        {/* <Stack.Screen name="Profile" component={RegisterScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   )
