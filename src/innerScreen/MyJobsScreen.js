@@ -26,7 +26,7 @@ const data1 = [
   { label: 'Item 2', value: '2' },
   
 ];
-export default function Item({ navigation }) {
+export default function MyJobScreen({ navigation }) {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 

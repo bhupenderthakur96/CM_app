@@ -25,14 +25,23 @@ const InviteFriendScreen = () => {
                     marginHorizontal:25,
                     borderWidth:2,
                     borderStyle: "dashed",
-                    padding:20,
-                    borderRadius:10
+                    padding:10,
+                    borderRadius:16
                 }}
                 >
-                    <Text>R231228001</Text>
-                    <Text style={{backgroundColor:"#6369F3"}}>Copy</Text>
+                    <Text style={{fontSize:18}}>R231228001</Text>
+                    <Text 
+                    style={{
+                        backgroundColor:"#6369F3",
+                        padding:8,
+                        color:"#ffffff",
+                        paddingHorizontal:20,
+                        borderRadius:10
+                    }}
+                    >
+                        Copy</Text>
                 </View>
-                <Text style={styles.buttonText}>jhyfg</Text>
+                <Text style={styles.buttonText}>Share</Text>
             </View>
         </View>
     )
@@ -61,7 +70,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginHorizontal:responsiveWidth(7),
         padding:responsiveHeight(2),
-        marginTop:responsiveHeight(5),
-        borderRadius:responsiveWidth(4)
+        marginTop:responsiveHeight(27),
+        borderRadius:responsiveWidth(4),
+        fontSize:18
     },
 })
