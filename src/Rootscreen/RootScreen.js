@@ -6,6 +6,8 @@ import LoginScreen from '../outerScreen/LoginScreen';
 import RegisterScreen from '../outerScreen/RegisterScreen';
 import SplashScreen from '../outerScreen/SplashScreen';
 import DrawerNavigation from '../navigation/DrawerNavigation';
+import PickDropScreen from '../innerScreen/PickDropScreen';
+import DelivaryTypeScreen from '../innerScreen/DelivaryTypeScreen';
 
 
 const RootScreen = () => {
@@ -32,6 +34,16 @@ const RootScreen = () => {
          <Stack.Screen
           name="drawer" 
           component={DrawerNavigation} 
+          options={{headerShown:false}}
+          />
+            <Stack.Screen
+          name="PickDrop" 
+          component={PickDropScreen} 
+          options={{headerShown:false}}
+          />
+            <Stack.Screen
+          name="DeliveryType" 
+          component={DelivaryTypeScreen} 
           options={{headerShown:false}}
           />
         {/* <Stack.Screen name="Profile" component={RegisterScreen} /> */}

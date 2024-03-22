@@ -3,6 +3,7 @@ import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import BottomNavigation from './BottomNavigation';
+import InviteFriendScreen from '../innerScreen/InviteFriendScreen';
 
 function HomeScreen({ navigation }) {
   return (
@@ -43,7 +44,17 @@ export default function DrawerNavigation() {
         component={BottomNavigation} 
         
         />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen 
+       options={{
+        // headerShown:false,
+        // Styling options for the screen
+        headerStyle: {
+          backgroundColor: 'black', // Setting background color to black
+        },
+        headerTintColor: '#FFFFFF', // Setting text color to white
+      }}
+        name="Invite a Friend" 
+        component={InviteFriendScreen} />
       </Drawer.Navigator>
    
   );

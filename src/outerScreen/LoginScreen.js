@@ -170,7 +170,7 @@ export default function LoginScreen() {
 
             <Text style={styles.forgotText}>Forgot password?</Text>
 
-            <TouchableOpacity style={styles.touch}>
+            <TouchableOpacity style={styles.touch}  onPress={() => navigation.navigate("drawer") }>
               {isLoading ? (
                 <ActivityIndicator size="small" color="#ffffff" style={styles.activityIndicator} />
               ) : (

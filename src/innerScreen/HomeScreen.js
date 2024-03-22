@@ -6,7 +6,7 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 
-const iosHeight = responsiveHeight(79); // Height for iOS
+const iosHeight = responsiveHeight(83); // Height for iOS
 const androidHeight = responsiveHeight(83.5); // Height for Android
 
 var Height = Platform.OS === 'ios' ? iosHeight : androidHeight;
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: responsiveHeight(56),
-    width: responsiveWidth(90),
+    width: '100%',
     marginTop: responsiveHeight(2),
   },
   title: {
