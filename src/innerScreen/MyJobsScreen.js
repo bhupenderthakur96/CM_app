@@ -58,41 +58,24 @@ export default function MyJobScreen({ navigation }) {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.contentContainer}>
-          <View style={styles.contentContainer1}>
-            <Image
-              style={styles.image}
-              source={require('../Assets/Images/robot.png')}
-              resizeMode="contain"
-            />
-            <View>
-              <Text style={styles.text}>What sort of size is your item?</Text>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={styles.text1}>or just</Text>
-                <TouchableOpacity>
-                  <Text style={styles.text2}> ASK ClickMOVERS AI </Text>
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.text3}>to assist you.</Text>
-              <Image
-                style={styles.speakerimage}
-                source={require('../Assets/Images/speaking.png')}
+        <Image
+               style={{height:responsiveHeight(20),width:responsiveWidth(93)}}
+                source={require('../../assets/Images/full.png')}
                 resizeMode="contain"
               />
-            </View>
-          </View>
           <View style={styles.weigthview}>
-            <Text>Item</Text>
+            <Text style={{fontFamily:"Poppins-Regular",fontWeight:"bold"}}>Item</Text>
             <Text style={styles.wighttext1}>Volumatric Size(3)</Text>
-            <Text>Weight(kg)</Text>
+            <Text style={{fontFamily:"Poppins-Regular",fontWeight:"bold",marginRight:responsiveWidth(2)}}>Weight(kg)</Text>
           </View>
 
           <View style={styles.weigthview1}>
-            <Text>Dining table</Text>
-            <Text>1.3-1.8</Text>
+            <Text style={{fontFamily:"Poppins-Regular",  fontWeight:"bold"}}>Dining table</Text>
+            <Text style={{fontFamily:"Poppins-Regular",  fontWeight:"bold"}}>1.3-1.8</Text>
             <Text style={styles.wighttext2}>20-40</Text>
           </View>
           <View style={styles.weigthview2}>
-            <Text>War Drobe Small</Text>
+            <Text style={{fontFamily:"Poppins-Regular",  fontWeight:"bold"}}>War Drobe Small</Text>
             <Text style={styles.wighttext3}>1.3-1.8</Text>
             <Text style={styles.wighttext4}>20-40</Text>
           </View>
@@ -173,14 +156,14 @@ export default function MyJobScreen({ navigation }) {
                 <TouchableOpacity>
                   <Image
                     style={styles.squareimage}
-                    source={require('../Assets/Icons/plus1.png')}
+                    source={require('../../assets/Icons/plus1.png')}
                     resizeMode="contain"
                   />
                 </TouchableOpacity>
 
                 {/* <Image
                 style={styles.plusimage}
-                source={require('../Assets/Icons/plus.png')}
+                source={require('../../assets/Icons/plus.png')}
                 resizeMode="contain"
               /> */}
               </View>
@@ -191,7 +174,7 @@ export default function MyJobScreen({ navigation }) {
             mode="outlined"
             multiline
             numberOfLines={6}
-            placeholder="Type Short Time Description"
+            placeholder="Type Short Item Description"
             outlineStyle={{ borderWidth: 1 }}
 
             theme={{
@@ -202,7 +185,7 @@ export default function MyJobScreen({ navigation }) {
             style={styles.lasttextinput}
           />
 
-          <View style={{ flexDirection: 'row', flex: 1 }}>
+          <View style={{ flexDirection: 'row', flex: 1, marginTop:responsiveHeight(1) }}>
             <View style={{ flex: 5, alignItems: 'flex-start' }}>
               <Text style={styles.lasttext}>
                 Total Volumetric
@@ -252,21 +235,22 @@ const styles = StyleSheet.create({
   text: {
     color: 'black',
     fontSize: responsiveFontSize(1.7),
-    fontFamily: 'Black',
+    fontFamily:"Poppins-Regular"
   },
   text1: {
     color: 'black',
     fontSize: responsiveFontSize(1.7),
-    fontFamily: 'Black',
+    fontFamily:"Poppins-Regular"
   },
   text2: {
     color: '#6369F3',
     fontSize: responsiveFontSize(1.6),
+    fontFamily:"Poppins-Regular",
   },
   text3: {
     color: 'black',
     fontSize: responsiveFontSize(1.7),
-    fontFamily: 'Black',
+    fontFamily:"Poppins-Regular"
   },
   speakerimage: {
     height: responsiveHeight(8),
@@ -274,19 +258,27 @@ const styles = StyleSheet.create({
     marginLeft: responsiveHeight(6),
   },
   wighttext1: {
-    marginLeft: responsiveHeight(17),
+    marginLeft: responsiveHeight(13.5),
+    fontFamily:"Poppins-Regular",
+    fontWeight:"bold"
   },
   wighttext2: {
     marginRight: responsiveHeight(4.5),
+    fontFamily:"Poppins-Regular",
+    fontWeight:"bold"
   },
   wighttext3: {
     marginRight: responsiveHeight(4.3),
+    fontFamily:"Poppins-Regular",
+    fontWeight:"bold"
   },
   wighttext4: {
     marginRight: responsiveHeight(4.5),
+    fontFamily:"Poppins-Regular",
+    fontWeight:"bold"
   },
   textinputview: {
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#ECF8F2',
     height: responsiveHeight(20),
     width: responsiveWidth(93),
     borderRadius: responsiveWidth(5),
@@ -297,7 +289,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(85),
     height: responsiveHeight(5.7),
     alignSelf: 'center',
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#F6F6FE',
     fontSize: responsiveFontSize(2),
     marginTop: responsiveHeight(3),
   },
@@ -310,7 +302,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(33),
     height: responsiveHeight(6),  //
     alignSelf: 'center',
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#F6F6FE',
     fontSize: responsiveFontSize(2),
     // bottom: responsiveHeight(1.5),
     borderWidth: responsiveWidth(0.3),//
@@ -332,20 +324,23 @@ const styles = StyleSheet.create({
   //   width: responsiveWidth(8),
   // },
   lasttextinput: {
-    width: responsiveWidth(93),
-    height: responsiveHeight(13),
+    width: responsiveWidth(92.5),
+    height: responsiveHeight(10.5),
     alignSelf: 'center',
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#FFFFFF',
     fontSize: responsiveFontSize(2),
     marginTop: responsiveHeight(2),
+    fontFamily:"Poppins-Regular",
   },
   lasttext: {
-
-    marginLeft: responsiveHeight(2.5)
+    fontFamily:"Poppins-Regular",
+    marginLeft: responsiveHeight(2.5),
+    fontWeight:"bold"
   },
   lasttext1: {
-
-    marginRight: responsiveHeight(2.5)
+    fontFamily:"Poppins-Regular",
+    marginRight: responsiveHeight(2.5),
+    fontWeight:"bold"
   },
   contentContainer: {
     backgroundColor: '#fff',
@@ -355,17 +350,18 @@ const styles = StyleSheet.create({
   },
   weigthview: {
     flexDirection: 'row',
-
+    fontFamily:"Poppins-Regular",
     justifyContent: 'space-between',
     height: responsiveHeight(7),
     width: responsiveWidth(93),
     paddingTop: responsiveHeight(2.5),
     borderBottomWidth: responsiveHeight(0.1),
     borderBottomColor: '#F0F0F3',
+    
   },
   weigthview1: {
     flexDirection: 'row',
-
+    fontFamily:"Poppins-Regular",
     justifyContent: 'space-between',
     height: responsiveHeight(4),
     width: responsiveWidth(93),
@@ -375,26 +371,28 @@ const styles = StyleSheet.create({
   },
   weigthview2: {
     flexDirection: 'row',
-
     justifyContent: 'space-between',
     height: responsiveHeight(4),
     width: responsiveWidth(93),
     // paddingTop: responsiveHeight(1),
+    marginTop:responsiveHeight(2)
   },
 
   button: {
     height: responsiveHeight(7.5),
-    width: responsiveWidth(93),
+    width: responsiveWidth(90),
     backgroundColor: '#27AE60',
     marginBottom: responsiveHeight(2),
-    borderRadius: responsiveWidth(4),
-
+    borderRadius: responsiveWidth(5),
+    elevation:4,
     justifyContent: 'center',
   },
   buttonText: {
     color: '#fff',
     textAlign: 'center',
     fontSize: responsiveFontSize(2),
+    fontFamily:"Poppins-Regular",
+    fontWeight:"bold"
   },
 
   // container: {

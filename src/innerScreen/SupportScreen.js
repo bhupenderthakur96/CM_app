@@ -34,10 +34,10 @@ const SupportScreen = () => {
             <View style={styles.container}>
                 <Image
                     style={styles.image}
-                    source={require('../Assets/Images/char2.png')}
+                    source={require('../../assets/Images/char2.png')}
                     resizeMode="contain"
                 />
-                <Text style={{ textAlign: "center", fontSize: 17 }}>Please feel free to talk to us if{"\n"}you have any questions. We will{"\n"}endeavour to answer within 24 hours</Text>
+                <Text style={{ textAlign: "center", fontSize: 17, fontFamily:"Poppins-Regular" }}>Please feel free to talk to us if{"\n"}you have any questions. We will{"\n"}endeavour to answer within 24 hours</Text>
                 {renderLabel()}
                 <Dropdown
                     style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
@@ -82,7 +82,9 @@ const SupportScreen = () => {
                     }}
                     style={styles.lasttextinput}
                 />
+
                 <Text style={styles.buttonText}>Share</Text>
+
             </View>
         </View>
     )
@@ -113,7 +115,9 @@ const styles = StyleSheet.create({
         padding: responsiveHeight(2),
         marginTop: responsiveHeight(7),
         borderRadius: responsiveWidth(4),
-        fontSize: 18
+        fontSize: 18,
+        fontFamily:"Poppins-Regular",
+        elevation:4
     },
     lasttextinput: {
         width: responsiveWidth(91),

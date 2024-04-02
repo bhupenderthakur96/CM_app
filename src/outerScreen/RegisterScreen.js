@@ -68,19 +68,19 @@ export default function Item() {
             <View style={styles.imageContainer}>
               <Image
                 style={styles.image}
-                source={require('../Assets/Images/Rectangle1.png')}
+                source={require('../../assets/Images/Rectangle1.png')}
                 resizeMode="contain"
               />
               <Image
                 style={styles.image}
-                source={require('../Assets/Images/Rectangle1.png')}
+                source={require('../../assets/Images/Rectangle1.png')}
                 resizeMode="contain"
               />
             </View>
             <View style={styles.logo}>
               <Image
                 style={styles.truckimage}
-                source={require('../Assets/Images/trucklogo.png')}
+                source={require('../../assets/Images/trucklogo.png')}
                 resizeMode="contain"
               />
             </View>
@@ -166,8 +166,10 @@ export default function Item() {
                   style={styles.eyeimage}
                   source={
                     hidePassword1
-                      ? require('../Assets/Icons/eye.png')
-                      : require('../Assets/Icons/eye.png')
+                      ? require('../../assets/Icons/eye.png')
+                      : require('../../assets/Icons/eye.png')
+
+
                   }
                   resizeMode="contain"
                 />
@@ -199,8 +201,8 @@ export default function Item() {
                   style={styles.eyeimage}
                   source={
                     hidePassword2
-                      ? require('../Assets/Icons/eye.png')
-                      : require('../Assets/Icons/eye.png')
+                      ? require('../../assets/Icons/eye.png')
+                      : require('../../assets/Icons/eye.png')
                   }
                   resizeMode="contain"
                 />
@@ -218,10 +220,10 @@ export default function Item() {
                 textStyle={{ color: "#0A0B1E" }}
                 size={22} 
               />
-              <Text style={{ paddingTop:responsiveHeight(.5), color: "#0A0B1E", }}>I have read the terms and conditions    </Text>
+              <Text style={{ paddingTop:responsiveHeight(.5), color: "#0A0B1E",fontFamily:"Poppins-Regular" }}>I have read the terms and conditions    </Text>
             
             </View>
-            <Text style={{  color: "#0A0B1E", marginLeft:responsiveHeight(9)}}>guidelines </Text>
+            <Text style={{  color: "#0A0B1E", marginLeft:responsiveHeight(9),fontFamily:"Poppins-Regular"}}>guidelines </Text>
 
             <View>
               <TouchableOpacity
@@ -284,7 +286,7 @@ const styles = StyleSheet.create({
     color: '#0A0B1E',
     textAlign: 'center',
     fontSize: responsiveFontSize(3.1),
-    fontFamily: 'poppins-Black',
+    fontFamily:"Poppins-Regular"
   },
   emailContainer: {
     alignSelf: 'center',
@@ -294,7 +296,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90),
     height: responsiveHeight(6.8),
     fontSize: responsiveFontSize(2),
-    fontFamily: 'Regular',
+    fontFamily:"Poppins-Regular"
   },
   passwordContainer: {
     alignSelf: 'center',
@@ -340,7 +342,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: responsiveHeight(1.7),
     fontSize: responsiveFontSize(2.1),
-    fontFamily: 'Poppins-Medium',
+    fontFamily:"Poppins-Regular"
   },
 
   lastview: {
@@ -351,10 +353,12 @@ const styles = StyleSheet.create({
   not: {
     color: '#757680',
     fontSize: responsiveFontSize(2),
+    fontFamily:"Poppins-Regular"
   },
   up: {
     color: '#6369F3',
     fontSize: responsiveFontSize(2.1),
     textDecorationLine: 'underline',
+    fontFamily:"Poppins-Regular"
   },
 });

@@ -21,7 +21,7 @@ import {
             <TouchableOpacity>
               <Image
                 style={styles.logo}
-                source={require('../Assets/Images/Mask.png')}
+                source={require('../assets/Images/Mask.png')}
                 resizeMode="contain"
               />
             </TouchableOpacity>
@@ -31,12 +31,12 @@ import {
             <View style={{}}>
               <Image
                 style={styles.imageview}
-                source={require('../Assets/Images/Map.png')}
+                source={require('../../assets/Images/Map.png')}
               />
               <View style={styles.contentContainer1}>
                 <Image
                   style={styles.image}
-                  source={require('../Assets/Images/robot.png')}
+                  source={require('../../assets/Images/robot.png')}
                   resizeMode="contain"
                 />
                 <View>
@@ -50,7 +50,7 @@ import {
                   <Text style={styles.text3}>to assist you.</Text>
                   <Image
                     style={styles.speakerimage}
-                    source={require('../Assets/Images/speaking.png')}
+                    source={require('../../assets/Images/speaking.png')}
                     resizeMode="contain"
                   />
                 </View>
@@ -65,7 +65,7 @@ import {
                 <View>
                   <Image
                     style={styles.Locationimage}
-                    source={require('../Assets/Images/Location.png')}
+                    source={require('../../assets/Images/Location.png')}
                     resizeMode="contain"
                   />
                 </View>
@@ -76,14 +76,14 @@ import {
                 <View style={styles.ownerview}>
                 <Image
                 style={styles.ownerimage}
-                source={require('../Assets/Images/owner.png')}/>
+                source={require('../../assets/Images/owner.png')}/>
                 <View style={{flexDirection:"column"}}>
                   <Text style={styles.ownwertext}>  Robert C.Stone</Text>
                   <Text>  Owner</Text>
                   </View>
                 <Image
                 style={styles.ownerimage}
-                source={require('../Assets/Images/owner.png')}/>
+                source={require('../../assets/Images/owner.png')}/>
                 </View>
                 <View
                   style={{marginTop:responsiveHeight(3),alignItems:"center"}}>

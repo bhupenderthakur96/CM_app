@@ -21,7 +21,7 @@ const SplashScreen = () => {
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
-            source={require('../Assets/Images/trucklogo.png')}
+            source={require('../../assets/Images/trucklogo.png')}
             resizeMode='contain'
           />
         </View>
@@ -31,13 +31,13 @@ const SplashScreen = () => {
         {/* {/ Vector image /} */}
         <Image
           style={styles.vectorImage}
-          source={require('../Assets/Images/Vector1.png')}
+          source={require('../../assets/Images/Vector1.png')}
           resizeMode="contain"
         />
         {/* {/ Delivery image /} */}
         <Image
           style={styles.deliveryImage}
-          source={require('../Assets/Images/delivery.png')}
+          source={require('../../assets/Images/delivery.png')}
           resizeMode="contain"
         />
       </View>

@@ -31,7 +31,7 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.contentContainer}>
         <Image
           style={styles.image}
-          source={require('../Assets/Images/Mask.png')}
+          source={require('../../assets/Images/Mask.png')}
           resizeMode="contain"
         />
         <Text style={styles.title}>Need Something Moved?</Text>
@@ -83,24 +83,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: responsiveFontSize(3),
     marginTop: responsiveHeight(1),
+    fontWeight:"bold"
   },
   subtitle: {
     color: '#0A0B1E',
     textAlign: 'center',
     fontSize: responsiveFontSize(1.3),
     marginTop: responsiveHeight(0.6),
+    
   },
   button: {
     height: responsiveHeight(7.5),
-    width: responsiveWidth(80),
+    width: responsiveWidth(90),
     backgroundColor: '#27AE60',
     borderRadius: responsiveWidth(4),
     marginTop: responsiveHeight(3.5),
     justifyContent: 'center',
+    elevation:4
   },
   buttonText: {
     color: '#fff',
     textAlign: 'center',
     fontSize: responsiveFontSize(2),
+    fontWeight:"bold"
   },
 });

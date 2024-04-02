@@ -14,6 +14,8 @@ import {
     responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import { Dropdown } from 'react-native-element-dropdown';
+import DateTimePickerModal from "react-native-modal-datetime-picker"
+import moment from 'moment';
 
 const data = [
     { label: 'Item 1', value: '1' },
@@ -26,7 +28,27 @@ const data1 = [
     { label: 'Item 2', value: '2' },
 
 ];
-export default function Item({ navigation }) {
+export default function DelivaryTypeScreen({ navigation }) {
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [date1, setDate1] = useState(null)
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+    const handleConfirm = (date) => {
+        // console.warn("A date has been picked: ", date);
+console.log("hjgg")
+        const b = date;
+        const a = moment(b).format("MMM Do YY"); 
+        console.log("A date has been picked: ", a);
+        setDate1(a);
+        hideDatePicker();
+    };
+
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
@@ -57,59 +79,141 @@ export default function Item({ navigation }) {
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Text style={{color:"white", textAlign:"center",marginVertical:10,fontSize:20}}>Delivery Type</Text>
+                <View style={{ flexDirection: "row" }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Image
+                            style={{
+                                height: responsiveHeight(3),
+                                width: responsiveWidth(5),
+                                marginTop: responsiveHeight(1),
+                                marginLeft: responsiveWidth(1)
+                            }}
+                            source={require('../../assets/Icons/back.png')}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                    <Text
+                        style={{
+                            color: "white",
+                            textAlign: "center",
+                            marginVertical: responsiveHeight(0.8),
+                            fontSize: responsiveFontSize(2),
+                            fontFamily: "Poppins-Medium",
+                            // alignSelf:"center"
+                            marginHorizontal: responsiveWidth(30),
+                            // fontWeight:"bold"
+                        }}>Delivery Type</Text>
+
+                </View>
+
                 <View style={styles.contentContainer}>
 
 
                     <Image
-                        style={{ height: 150, width: 400,marginTop:10 }}
-                        source={require('../Assets/Images/full.png')}
+                        style={{
+                            height: responsiveHeight(20),
+                            width: responsiveWidth(93),
+                            alignSelf: "center",
+
+                        }}
+                        source={require('../../assets/Images/full.png')}
                         resizeMode="contain"
                     />
-                    <Text style={{fontWeight:"bold",marginHorizontal:responsiveWidth(5)}}>Choose your Delivery Type</Text>
+                    <Text
+                        style={{
+                            fontWeight: "bold",
+                            marginHorizontal: responsiveWidth(5),
+                            fontFamily: "Poppins-Regular",
+                            fontSize: responsiveFontSize(2),
+                            color: "#0A0B1E"
+                        }}>Choose your Delivery Type</Text>
                     <View
                         style={{
-                            flexDirection: "row",
-
+                            flexDirection: "row", justifyContent: "space-between"
                         }}>
                         <View>
+                            <Image
+                                style={{ height: responsiveHeight(18), width: responsiveWidth(35), }}
+                                source={require('../../assets/Images/Sameday.png')}
+                                resizeMode="contain"
+                            />
+                        </View>
+                        <View>
+                            <Image
+                                // style={{ height: 120, width: 120, marginTop: 10, marginRight: 10 }}
+                                style={{ height: responsiveHeight(15), width: responsiveWidth(30), marginTop: responsiveHeight(1) }}
+                                source={require('../../assets/Images/Economy.png')}
+                                resizeMode="contain"
+                            />
+                        </View>
+                        <View>
+                            <Image
+                                style={{ height: responsiveHeight(15), width: responsiveWidth(35), marginTop: responsiveHeight(1) }}
+                                source={require('../../assets/Images/Express.png')}
+                                resizeMode="contain"
+                            />
+                        </View>
+                    </View>
+                    <View style={{ marginHorizontal: responsiveWidth(5) }}>
+                        <Text style={{
+                            fontWeight: "bold",
+                            fontFamily: "Poppins-Regular",
+                            // marginHorizontal:responsiveWidth(5),
+                            fontSize: responsiveFontSize(2),
+                            color: "#0A0B1E"
+                        }}>Schedule a pickup{"\n"}</Text>
+                        <Text style={{
+                            fontFamily: "Poppins-Regular",
+                            fontSize: responsiveFontSize(1.5),
+                            color: "#C4C5C9"
+                        }}>NOTE: Schedule Job Cost More & May Take Longer{"\n"}To Find a Driver</Text>
+                    </View>
 
-                            <Image
-                                style={{ height: 150, width: 150, }}
-                                source={require('../Assets/Images/Sameday.png')}
-                                resizeMode="contain"
-                            />
-                        </View>
+                    <View style={{ flexDirection: "row" }}>
+
+
                         <View>
-                            <Image
-                                style={{ height: 120, width: 120, marginTop: 10, marginRight: 10 }}
-                                source={require('../Assets/Images/Economy.png')}
-                                resizeMode="contain"
+                            <TextInput
+                                style={{ marginHorizontal: responsiveWidth(4), width: responsiveWidth(90) }}
+
+                                label="Select Date"
+                                mode="outlined"
+                                outlineStyle={{ borderWidth: 0.3 }}
+                                theme={{
+                                    roundness: 13,
+                                    color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                }}
+                                placeholder="00-00-0000"
+                                value={date1}
+                                onChangeText={setDate1}
+
                             />
                         </View>
-                        <View>
-                            <Image
-                                style={{ height: 120, width: 120, marginTop: 10, marginRight: 15 }}
-                                source={require('../Assets/Images/Express.png')}
-                                resizeMode="contain"
-                            />
-                        </View>
+                        <TouchableOpacity onPress={showDatePicker}>
+                            <View>
+                                <Image
+                                    style={{
+                                        height: responsiveHeight(5),
+                                        width: responsiveWidth(5),
+                                        // backgroundColor:"blue",
+                                        position: "absolute",
+                                        right: responsiveWidth(7),
+                                        top: responsiveHeight(1.1)
+                                    }}
+                                    source={require('../../assets/Icons/calender.png')}
+                                    resizeMode="contain"
+                                />
+                                <DateTimePickerModal
+                                    isVisible={isDatePickerVisible}
+                                    mode="date"
+                                    onConfirm={handleConfirm}
+                                    onCancel={hideDatePicker}
+                                />
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                    <View style={{marginHorizontal:responsiveWidth(5)}}>
-                    <Text style={{fontWeight:"bold"}}>Schedule a pick Up{"\n"}</Text>
-                    <Text>NOTE: Schedule Job Cost More & May Take Longer To Find a Driver{"\n"}</Text>
-                    </View>
-                    <TextInput
-                        style={{marginHorizontal:responsiveWidth(4)}}
-                        label="Select Date"
-                        mode="outlined"
-                        outlineStyle={{ borderWidth: 0.3 }}
-                        theme={{
-                            roundness: 15,
-                            color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                          }}
-                          placeholder="00-00-0000"
-                    />
+
+
                     <TextInput
                         mode="outlined"
                         multiline
@@ -127,9 +231,9 @@ export default function Item({ navigation }) {
 
 
                     <TouchableOpacity
-                       
+
                         title="Go to Details"
-                        onPress={() => navigation.navigate('PickDrop')}>
+                        onPress={() => navigation.navigate('Click')}>
                         <Text style={styles.buttonText}>Next</Text>
                     </TouchableOpacity>
                 </View>
@@ -142,6 +246,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#0A0B1E',
+
     },
     contentContainer1: {
         backgroundColor: '#E8E8E8',
@@ -242,12 +347,12 @@ const styles = StyleSheet.create({
     // },
     lasttextinput: {
         width: responsiveWidth(91),
-        height: responsiveHeight(13),
+        height: responsiveHeight(10),
         alignSelf: 'center',
-        backgroundColor: '#E8E8E8',
+        backgroundColor: '#FFFFFF',
         fontSize: responsiveFontSize(2),
         marginTop: responsiveHeight(5),
-
+        fontFamily: "Poppins-Regular"
     },
     lasttext: {
 
@@ -261,7 +366,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: responsiveHeight(100),
         borderRadius: responsiveWidth(5),
-
+        // alignItems: 'center',
     },
     weigthview: {
         flexDirection: 'row',
@@ -285,23 +390,25 @@ const styles = StyleSheet.create({
     },
     weigthview2: {
         flexDirection: 'row',
-
         justifyContent: 'space-between',
         height: responsiveHeight(4),
         width: responsiveWidth(93),
         // paddingTop: responsiveHeight(1),
     },
 
-    
+
     buttonText: {
         color: '#fff',
         textAlign: 'center',
         backgroundColor: '#27AE60',
         justifyContent: 'center',
-        marginHorizontal:responsiveWidth(7),
-        padding:responsiveHeight(2),
-        marginTop:responsiveHeight(5),
-        borderRadius:responsiveWidth(4)
+        marginHorizontal: responsiveWidth(7),
+        padding: responsiveHeight(2),
+        marginTop: responsiveHeight(5),
+        borderRadius: responsiveWidth(4),
+        fontFamily: "Poppins-Bold",
+        fontSize:responsiveFontSize(2.2),
+        elevation:4
     },
 
     // container: {
@@ -326,6 +433,7 @@ const styles = StyleSheet.create({
         zIndex: 999,
         paddingHorizontal: responsiveWidth(1.5),
         fontSize: 14,
+        fontFamily: "Poppins-Regular"
     },
     label1: {
         position: 'absolute',
@@ -335,12 +443,15 @@ const styles = StyleSheet.create({
         zIndex: 99,
         paddingHorizontal: responsiveWidth(1.5),
         fontSize: 14,
+        fontFamily: "Poppins-Regular"
     },
     placeholderStyle: {
         fontSize: 16,
+        fontFamily: "Poppins-Regular"
     },
     selectedTextStyle: {
         fontSize: 16,
+        fontFamily: "Poppins-Regular"
     },
     iconStyle: {
         width: 20,
@@ -349,5 +460,6 @@ const styles = StyleSheet.create({
     inputSearchStyle: {
         height: 40,
         fontSize: 16,
+        fontFamily: "Poppins-Regular"
     },
 });

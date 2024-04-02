@@ -84,19 +84,19 @@ export default function LoginScreen() {
             <View style={styles.imageContainer}>
               <Image
                 style={styles.image}
-                source={require('../Assets/Images/Rectangle1.png')}
+                source={require('../../assets/Images/Rectangle1.png')}
                 resizeMode="contain"
               />
               <Image
                 style={styles.image}
-                source={require('../Assets/Images/Rectangle1.png')}
+                source={require('../../assets/Images/Rectangle1.png')}
                 resizeMode="contain"
               />
             </View>
             <View style={styles.logo}>
               <Image
                 style={styles.truckimage}
-                source={require('../Assets/Images/trucklogo.png')}
+                source={require('../../assets/Images/trucklogo.png')}
                 resizeMode="contain"
               />
             </View>
@@ -160,8 +160,8 @@ export default function LoginScreen() {
                   style={styles.eyeimage}
                   source={
                     hidePassword
-                      ? require('../Assets/Icons/eye.png')
-                      : require('../Assets/Icons/eye.png')
+                      ? require('../../assets/Icons/eye.png')
+                      : require('../../assets/Icons/eye.png')
                   }
                   resizeMode="contain"
                 />
@@ -235,7 +235,8 @@ const styles = StyleSheet.create({
     color: '#0A0B1E',
     textAlign: 'center',
     fontSize: responsiveFontSize(3.1),
-    fontFamily: 'poppins-Black',
+    fontFamily:"Poppins-Regular",
+    fontWeight:"bold"
   },
   emailContainer: {
     alignSelf: 'center',
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90),
     height: responsiveHeight(6.8),
     fontSize: responsiveFontSize(2),
-    fontFamily: 'Regular',
+    fontFamily:"Poppins-Regular"
   },
   passwordContainer: {
     alignSelf: 'center',
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90),
     marginTop: responsiveHeight(3),
     fontSize: responsiveFontSize(2),
-    fontFamily: 'Regular',
+    fontFamily:"Poppins-Regular"
   },
   eyeContainer: {
     position: 'absolute',
@@ -275,7 +276,7 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2),
     marginLeft: responsiveWidth(7),
     paddingTop: responsiveHeight(1),
-    fontFamily: 'Regular',
+    fontFamily:"Poppins-Regular"
   },
   touch: {
     height: responsiveHeight(7.2),
@@ -291,7 +292,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     fontSize: responsiveFontSize(2.1),
-    fontFamily: 'Poppins-Medium',
+    fontFamily:"Poppins-Regular",
+    fontWeight:"bold"
   },
   touch2: {
     height: responsiveHeight(7.2),
@@ -310,7 +312,7 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2),
     marginTop: responsiveHeight(1.5),
     fontSize: responsiveFontSize(2.3),
-    fontFamily: 'Regular',
+    fontFamily:"Poppins-Regular"
   },
   lastview: {
     flexDirection: 'row',
@@ -320,11 +322,13 @@ const styles = StyleSheet.create({
   not: {
     color: '#757680',
     fontSize: responsiveFontSize(2),
+    fontFamily:"Poppins-Regular"
   },
   up: {
     color: '#6369F3',
     fontSize: responsiveFontSize(2.1),
     textDecorationLine: 'underline',
+    fontFamily:"Poppins-Regular"
   },
   activityIndicator: {
     position: 'absolute',

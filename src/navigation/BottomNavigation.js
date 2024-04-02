@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View,Image } from 'react-native'
+import React,{useState} from 'react'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../innerScreen/HomeScreen';
@@ -11,31 +11,85 @@ import ProfileScreen from '../innerScreen/ProfileScreen';
 
 const BottomNavigation = () => {
     const Tab = createBottomTabNavigator();
+    const [selectedTab, setSelectedTab] = useState(true);
+    console.log(selectedTab,"jack")
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+    screenOptions={{
+      activeTintColor: 'blue', // Color for the active tab=
+    }}
+    >
+      <Tab.Screen 
+        name="Homee"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+          
+          tabBarIcon: ({ color }) => (
+           
+            <Image
+              style={{ height: 30, width: 30 }}
+              source={require('../../assets/Icons/house.png')}
+              // source={selectedTab === true ? require('../../assets/Icons/blueH.png') : (selectedTab === false ? require('../../assets/Icons/house.png') : require('../../assets/Icons/house.png'))}
+              resizeMode="contain"
+            />
+            
+          ),
+          tabBarStyle: {
+            backgroundColor: 'black', // Setting background color of the tab bar
+          },
+        }}
+        listeners={({ navigation, route }) => ({
+          tabPress: e => {
+            setSelectedTab(!selectedTab);
+          },
+        })}
+      />
     <Tab.Screen 
-    //  options={{headerShown:false}}
-    name="Homee" component={HomeScreen} 
-    options={{
-      headerShown:false,
+    
+     options={{
       tabBarStyle: {
         backgroundColor: 'black', // Setting background color of the tab bar
       },
-      tabBarActiveTintColor: 'blue', // Setting active tab text color to white
-      tabBarInactiveTintColor: 'gray', // Setting inactive tab text color to gray
-      // tabBarLabelStyle: {
-      //   fontSize: 16, // Adjust font size of tab labels as needed
-      // },
+      headerShown:false,
+      tabBarIcon:({color})=>(
+        <Image
+        style={{ height: 30}}
+        source={require('../../assets/Icons/trolly.png')}
+        resizeMode="contain"
+      />
+      ),
     }}
-    />
-    <Tab.Screen 
-     options={{headerShown:false}}
     name="MyJobs" component={MyJobsScreen} />
     <Tab.Screen 
-     options={{headerShown:false}}
+     options={{
+      tabBarStyle: {
+        backgroundColor: 'black', // Setting background color of the tab bar
+      },
+      headerShown:false,
+      tabBarIcon:({color})=>(
+        <Image
+        style={{ height: 30}}
+        source={require('../../assets/Icons/bell.png')}
+        resizeMode="contain"
+      />
+      ),
+    }}
     name="Notification" component={NotificationScreen} />
     <Tab.Screen 
-     options={{headerShown:false}}
+     options={{
+      tabBarStyle: {
+        backgroundColor: 'black', // Setting background color of the tab bar
+      },
+      headerShown:false,
+      tabBarIcon:({color})=>(
+        <Image
+        style={{ height: 30}}
+        source={require('../../assets/Icons/person.png')}
+        resizeMode="contain"
+      />
+      ),
+    }}
     name="Profile" component={ProfileScreen} />
   </Tab.Navigator>
   )

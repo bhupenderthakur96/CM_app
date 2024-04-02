@@ -13,10 +13,10 @@ const InviteFriendScreen = () => {
             <View style={styles.container}>
                 <Image
                     style={styles.image}
-                    source={require('../Assets/Images/character.png')}
+                    source={require('../../assets/Images/character.png')}
                     resizeMode="contain"
                 />
-                <Text style={{textAlign:"center",fontSize:17}}>Invite a friend and earn amazing{"\n"}discounts bonuses and free rides!</Text>
+                <Text style={{textAlign:"center",fontSize:17, fontFamily:"Poppins-Regular"}}>Invite a friend and earn amazing{"\n"}discounts bonuses and free rides!</Text>
                 <View 
                 style={{
                     flexDirection:"row",
@@ -29,14 +29,15 @@ const InviteFriendScreen = () => {
                     borderRadius:16
                 }}
                 >
-                    <Text style={{fontSize:18}}>R231228001</Text>
+                    <Text style={{fontSize:18, fontFamily:"Poppins-Regular"}}>R231228001</Text>
                     <Text 
                     style={{
                         backgroundColor:"#6369F3",
                         padding:8,
                         color:"#ffffff",
                         paddingHorizontal:20,
-                        borderRadius:10
+                        borderRadius:10,
+                        fontFamily:"Poppins-Regular"
                     }}
                     >
                         Copy</Text>
@@ -72,6 +73,8 @@ const styles = StyleSheet.create({
         padding:responsiveHeight(2),
         marginTop:responsiveHeight(27),
         borderRadius:responsiveWidth(4),
-        fontSize:18
+        fontSize:18,
+        fontFamily:"Poppins-Regular",
+        elevation:4
     },
 })
