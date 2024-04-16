@@ -5,12 +5,14 @@ import { Provider } from "react-redux";
 import React from 'react'
 import MainTab from './src/MainTab';
 import RootScreen from './src/Rootscreen/RootScreen';
-
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 const App = () => {
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
      <RootScreen/>
-    // </Provider>
+     </GestureHandlerRootView>
+     </Provider>
   )
 }
 

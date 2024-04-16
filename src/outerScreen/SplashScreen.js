@@ -7,7 +7,7 @@ const SplashScreen = () => {
     const navigation = useNavigation();
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate('Login'); // Navigate to the 'Home' screen after 2 seconds
+      navigation.navigate('home'); // Navigate to the 'Home' screen after 2 seconds
     }, 2000); 
 
     return () => clearTimeout(timer);

@@ -7,7 +7,7 @@ import {
 } from 'react-native-responsive-dimensions';
 
 
-const InviteFriendScreen = () => {
+const SettingScreen = () => {
   return (
     <View style={{ flex: 1, backgroundColor: "black" }}>
       <View style={styles.container}>
@@ -25,8 +25,9 @@ const InviteFriendScreen = () => {
           />
           <Text style={{ 
             alignSelf: "center",
-            fontSize:15,
-            fontWeight:"bold" 
+            fontSize:responsiveFontSize(1.7),
+           fontFamily:"Poppins-Medium",
+           color:"#0A0B1E"
          }}>Change Password</Text>
         </View>
 
@@ -45,7 +46,9 @@ const InviteFriendScreen = () => {
           <Text style={{ 
             alignSelf: "center",
             fontSize:15,
-            fontWeight:"bold", 
+            fontSize:responsiveFontSize(1.7),
+            fontFamily:"Poppins-Medium",
+            color:"#0A0B1E"
              }}>Rate the App</Text>
         </View>
 
@@ -63,8 +66,9 @@ const InviteFriendScreen = () => {
           />
           <Text style={{ 
             alignSelf: "center",
-            fontSize:15,
-            fontWeight:"bold" 
+            fontSize:responsiveFontSize(1.7),
+            fontFamily:"Poppins-Medium",
+            color:"#0A0B1E"
             }}>Help & FAQ</Text>
         </View>
 
@@ -83,8 +87,9 @@ const InviteFriendScreen = () => {
           <Text 
           style={{ 
             alignSelf: "center",
-            fontSize:15,
-            fontWeight:"bold" 
+            fontSize:responsiveFontSize(1.7),
+           fontFamily:"Poppins-Medium",
+           color:"#0A0B1E"
              }}>
             Privacy Policy</Text>
         </View>
@@ -104,8 +109,9 @@ const InviteFriendScreen = () => {
           <Text 
           style={{ 
             alignSelf: "center",
-            fontSize:15,
-            fontWeight:"bold" 
+            fontSize:responsiveFontSize(1.7),
+            fontFamily:"Poppins-Medium",
+            color:"#0A0B1E"
             }}>Terms & Conditions</Text>
         </View>
       </View>
@@ -113,7 +119,7 @@ const InviteFriendScreen = () => {
   )
 }
 
-export default InviteFriendScreen
+export default SettingScreen
 
 const styles = StyleSheet.create({
   container: {

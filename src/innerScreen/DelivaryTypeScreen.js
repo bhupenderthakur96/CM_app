@@ -16,6 +16,8 @@ import {
 import { Dropdown } from 'react-native-element-dropdown';
 import DateTimePickerModal from "react-native-modal-datetime-picker"
 import moment from 'moment';
+import LogoScreen from '../outerScreen/LogoScreen';
+import sstyles from '../../sstyle';
 
 const data = [
     { label: 'Item 1', value: '1' },
@@ -30,7 +32,10 @@ const data1 = [
 ];
 export default function DelivaryTypeScreen({ navigation }) {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [isDatePickerVisible2, setDatePickerVisibility2] = useState(false);
+    const [dd, setDd] = useState(false);
     const [date1, setDate1] = useState(null)
+    const [date2, setDate2] = useState(null)
     const showDatePicker = () => {
         setDatePickerVisibility(true);
     };
@@ -41,176 +46,240 @@ export default function DelivaryTypeScreen({ navigation }) {
 
     const handleConfirm = (date) => {
         // console.warn("A date has been picked: ", date);
-console.log("hjgg")
+        console.log("hjgg")
         const b = date;
-        const a = moment(b).format("MMM Do YY"); 
+        const a = moment(b).format('MMMM Do YYYY');
         console.log("A date has been picked: ", a);
         setDate1(a);
         hideDatePicker();
     };
 
-    const [value, setValue] = useState(null);
-    const [isFocus, setIsFocus] = useState(false);
-
-    const renderLabel = () => {
-        if (value || isFocus) {
-            return (
-                <Text style={[styles.label, isFocus && { color: 'gray' }]}>
-                    Size
-                </Text>
-            );
-        }
-        return null;
+    const showDatePicker2 = () => {
+        setDatePickerVisibility2(true);
     };
 
-    const [value1, setValue1] = useState(null);
-    const [isFocus1, setIsFocus1] = useState(false);
+    const hideDatePicker2 = () => {
+        setDatePickerVisibility2(false);
+    };
+    const handleConfirm2 = (datee) => {
+        // console.warn("A date has been picked2: ", datee);
+        console.log("hjgg")
+        const b = datee;
+        const a = moment(b).format("h:mm:ss a");
+        console.log("A date has been picked2: ", a);
+        setDate2(a);
+        hideDatePicker2();
+    };
+    const [selectedOption, setSelectedOption] = useState(null);
 
-    const renderLabel1 = () => {
-        if (value1 || isFocus1) {
-            return (
-                <Text style={[styles.label1, isFocus1 && { color: 'gray' }]}>
-                    Size
-                </Text>
-            );
-        }
-        return null;
+    const handleOptionSelect = (option) => {
+        console.log(option,"ghjh")
+        setSelectedOption(option === selectedOption ? null : option);
     };
     return (
         <ScrollView>
             <View style={styles.container}>
-                <View style={{ flexDirection: "row" }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Image
-                            style={{
-                                height: responsiveHeight(3),
-                                width: responsiveWidth(5),
-                                marginTop: responsiveHeight(1),
-                                marginLeft: responsiveWidth(1)
-                            }}
-                            source={require('../../assets/Icons/back.png')}
-                            resizeMode="contain"
-                        />
-                    </TouchableOpacity>
+                <View style={{ flexDirection: "row", }}>
+
                     <Text
                         style={{
                             color: "white",
                             textAlign: "center",
-                            marginVertical: responsiveHeight(0.8),
-                            fontSize: responsiveFontSize(2),
+                            width: '100%',
+                            marginVertical: responsiveHeight(2),
+                            fontSize: responsiveFontSize(2.2),
                             fontFamily: "Poppins-Medium",
-                            // alignSelf:"center"
-                            marginHorizontal: responsiveWidth(30),
-                            // fontWeight:"bold"
+                            alignSelf: "center",
                         }}>Delivery Type</Text>
+                    <TouchableOpacity style={{ height: "100%", justifyContent: 'center', position: "absolute" }}
+                        onPress={() => navigation.goBack()}
+
+                    >
+                        <Image
+                            style={{
+                                height: responsiveHeight(5),
+                                width: responsiveWidth(6),
+
+                                marginLeft: responsiveWidth(2.5),
+
+                            }}
+                            source={require('../../assets/Icons/back.png')}
+                            resizeMode="contain"
+
+                        />
+                    </TouchableOpacity>
 
                 </View>
 
                 <View style={styles.contentContainer}>
-
-
-                    <Image
-                        style={{
-                            height: responsiveHeight(20),
-                            width: responsiveWidth(93),
-                            alignSelf: "center",
-
-                        }}
-                        source={require('../../assets/Images/full.png')}
-                        resizeMode="contain"
-                    />
+                    <LogoScreen />
                     <Text
                         style={{
-                            fontWeight: "bold",
                             marginHorizontal: responsiveWidth(5),
-                            fontFamily: "Poppins-Regular",
-                            fontSize: responsiveFontSize(2),
-                            color: "#0A0B1E"
+                            fontFamily: "Poppins-Medium",
+                            fontSize: responsiveFontSize(1.7),
+                            color: "#0A0B1E",
+                            marginTop: responsiveHeight(1)
                         }}>Choose your Delivery Type</Text>
                     <View
                         style={{
-                            flexDirection: "row", justifyContent: "space-between"
+                            flexDirection: "row",
+                            justifyContent: "space-around",
+                            marginTop: responsiveHeight(1),
+                            width: "100%",
+                            height: "20%"
                         }}>
                         <View>
-                            <Image
-                                style={{ height: responsiveHeight(18), width: responsiveWidth(35), }}
-                                source={require('../../assets/Images/Sameday.png')}
-                                resizeMode="contain"
-                            />
+                            <TouchableOpacity onPress={() => handleOptionSelect("sameday")}>
+                                <Image
+                                    style={{
+                                        height: selectedOption === "sameday" ? responsiveHeight(16) : responsiveHeight(16),
+                                        width: selectedOption === "sameday" ? responsiveWidth(30) : responsiveWidth(30),
+                                        marginTop: selectedOption === "sameday" ? responsiveHeight(1) : responsiveHeight(1),
+                                        marginLeft: responsiveWidth(2)
+                                    }}
+                                    source={selectedOption === "sameday" ? require('../../assets/Images/SamedayBlue.png') : require('../../assets/Images/SamedayW.png')}
+                                    resizeMode="contain"
+                                />
+                            </TouchableOpacity>
                         </View>
                         <View>
-                            <Image
-                                // style={{ height: 120, width: 120, marginTop: 10, marginRight: 10 }}
-                                style={{ height: responsiveHeight(15), width: responsiveWidth(30), marginTop: responsiveHeight(1) }}
-                                source={require('../../assets/Images/Economy.png')}
-                                resizeMode="contain"
-                            />
+                            <TouchableOpacity onPress={() => handleOptionSelect("economy")}>
+                                <Image
+                                    style={{
+                                        height: selectedOption === "economy" ? responsiveHeight(16) : responsiveHeight(16),
+                                        width: selectedOption === "economy" ? responsiveWidth(32) : responsiveWidth(32),
+                                        marginTop: selectedOption === "economy" ? responsiveHeight(1) : responsiveHeight(1),
+                                        marginLeft: responsiveWidth(2)
+                                    }}
+                                    source={selectedOption === "economy" ? require('../../assets/Images/EconomyB.png') : require('../../assets/Images/EconomyW.png')}
+                                    resizeMode="contain"
+                                />
+                            </TouchableOpacity>
                         </View>
                         <View>
-                            <Image
-                                style={{ height: responsiveHeight(15), width: responsiveWidth(35), marginTop: responsiveHeight(1) }}
-                                source={require('../../assets/Images/Express.png')}
-                                resizeMode="contain"
-                            />
+                            <TouchableOpacity onPress={() => handleOptionSelect("express")}>
+                                <Image
+                                    style={{
+                                        height: selectedOption === "express" ? responsiveHeight(16) : responsiveHeight(16),
+                                        width: selectedOption === "express" ? responsiveWidth(30) : responsiveWidth(30),
+                                        marginTop: selectedOption === "express" ? responsiveHeight(1) : responsiveHeight(1),
+                                        marginLeft: responsiveWidth(2)
+                                    }}
+                                    source={selectedOption === "express" ? require('../../assets/Images/ExpressB.png') : require('../../assets/Images/ExpressW.png')}
+                                    resizeMode="contain"
+                                />
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={{ marginHorizontal: responsiveWidth(5) }}>
                         <Text style={{
-                            fontWeight: "bold",
-                            fontFamily: "Poppins-Regular",
+
+                            fontFamily: "Poppins-Medium",
                             // marginHorizontal:responsiveWidth(5),
-                            fontSize: responsiveFontSize(2),
-                            color: "#0A0B1E"
+                            fontSize: responsiveFontSize(1.5),
+                            color: "#0A0B1E",
+                            marginTop: responsiveHeight(1)
                         }}>Schedule a pickup{"\n"}</Text>
                         <Text style={{
                             fontFamily: "Poppins-Regular",
-                            fontSize: responsiveFontSize(1.5),
-                            color: "#C4C5C9"
+                            fontSize: responsiveFontSize(1.4),
+                            color: "#6C6D78"
                         }}>NOTE: Schedule Job Cost More & May Take Longer{"\n"}To Find a Driver</Text>
                     </View>
 
-                    <View style={{ flexDirection: "row" }}>
+                    <View style={{ flexDirection: "row", marginTop: responsiveHeight(1.5) }}>
 
 
                         <View>
+
                             <TextInput
-                                style={{ marginHorizontal: responsiveWidth(4), width: responsiveWidth(90) }}
+                                style={{ marginHorizontal: responsiveWidth(4), width: responsiveWidth(90), backgroundColor: "#FFFFFF", marginTop: responsiveHeight(3) }}
 
                                 label="Select Date"
                                 mode="outlined"
-                                outlineStyle={{ borderWidth: 0.3 }}
+                                outlineStyle={{
+                                    borderWidth: responsiveWidth(0.2),
+                                    borderColor: "#C8C8C8"
+                                }}
                                 theme={{
-                                    roundness: 13,
-                                    color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                    roundness: 15,
+                                    colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
                                 }}
                                 placeholder="00-00-0000"
+                                placeholderTextColor={"#C8C8C8"}
                                 value={date1}
                                 onChangeText={setDate1}
 
                             />
+
+                            <TouchableOpacity onPress={showDatePicker}>
+                                <View>
+                                    <Image
+                                        style={{
+                                            height: responsiveHeight(5),
+                                            width: responsiveWidth(5),
+                                            // backgroundColor:"blue",
+                                            position: "absolute",
+                                            right: responsiveWidth(7),
+                                            bottom: responsiveHeight(1.2)
+                                        }}
+                                        source={require('../../assets/Icons/calender.png')}
+                                        resizeMode="contain"
+                                    />
+                                    <DateTimePickerModal
+                                        isVisible={isDatePickerVisible}
+                                        mode="date"
+                                        onConfirm={handleConfirm}
+                                        onCancel={hideDatePicker}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <TextInput
+                                style={{ marginHorizontal: responsiveWidth(4), width: responsiveWidth(90), backgroundColor: "#FFFFFF", marginTop: responsiveHeight(3) }}
+
+                                label="Select Time"
+                                mode="outlined"
+                                outlineStyle={{
+                                    borderWidth: responsiveWidth(0.2),
+                                    borderColor: "#C8C8C8"
+                                }}
+                                theme={{
+                                    roundness: 15,
+                                    colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                }}
+                                placeholder="00-00-0000"
+                                placeholderTextColor={"#C8C8C8"}
+                                value={date2}
+                                onChangeText={setDate1}
+
+                            />
+                            <TouchableOpacity onPress={showDatePicker2}>
+                                <View>
+                                    <Image
+                                        style={{
+                                            height: responsiveHeight(5),
+                                            width: responsiveWidth(5.5),
+                                            // backgroundColor:"blue",
+                                            position: "absolute",
+                                            right: responsiveWidth(7),
+                                            bottom: responsiveHeight(1.2)
+                                        }}
+                                        source={require('../../assets/Icons/time.png')}
+                                        resizeMode="contain"
+                                    />
+                                    <DateTimePickerModal
+                                        isVisible={isDatePickerVisible2}
+                                        mode="time"
+                                        onConfirm={handleConfirm2}
+                                        onCancel={hideDatePicker2}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+
                         </View>
-                        <TouchableOpacity onPress={showDatePicker}>
-                            <View>
-                                <Image
-                                    style={{
-                                        height: responsiveHeight(5),
-                                        width: responsiveWidth(5),
-                                        // backgroundColor:"blue",
-                                        position: "absolute",
-                                        right: responsiveWidth(7),
-                                        top: responsiveHeight(1.1)
-                                    }}
-                                    source={require('../../assets/Icons/calender.png')}
-                                    resizeMode="contain"
-                                />
-                                <DateTimePickerModal
-                                    isVisible={isDatePickerVisible}
-                                    mode="date"
-                                    onConfirm={handleConfirm}
-                                    onCancel={hideDatePicker}
-                                />
-                            </View>
-                        </TouchableOpacity>
+
+
                     </View>
 
 
@@ -219,22 +288,33 @@ console.log("hjgg")
                         multiline
                         numberOfLines={6}
                         placeholder="Enter Description"
-                        outlineStyle={{ borderWidth: 1 }}
+                        outlineStyle={{
+                            borderWidth: responsiveWidth(0.2),
+                            borderColor: "#C8C8C8"
+                        }}
 
                         theme={{
                             roundness: 13,
 
                             colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
                         }}
-                        style={styles.lasttextinput}
+                        style={{
+                            ...styles.lasttextinput,
+                            placeholderTextColor: '#0A0B1E', // CSS for placeholder color
+                        }}
+                        placeholderTextColor={"#C8C8C8"}
                     />
-
-
-                    <TouchableOpacity
-
+                    <TouchableOpacity  style={[sstyles.buttonText, { marginTop: responsiveHeight(5),bottom:responsiveHeight(1) }]}
                         title="Go to Details"
                         onPress={() => navigation.navigate('Click')}>
-                        <Text style={styles.buttonText}>Next</Text>
+                        <Text 
+                       style={{
+                        fontFamily: "Poppins-Medium",
+                        fontSize: responsiveFontSize(2),
+                        color: '#fff',
+                        textAlign: 'center',
+                       }}
+                        >Next</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -245,7 +325,8 @@ console.log("hjgg")
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0A0B1E',
+        backgroundColor: '#000000',
+
 
     },
     contentContainer1: {
@@ -350,9 +431,10 @@ const styles = StyleSheet.create({
         height: responsiveHeight(10),
         alignSelf: 'center',
         backgroundColor: '#FFFFFF',
-        fontSize: responsiveFontSize(2),
-        marginTop: responsiveHeight(5),
-        fontFamily: "Poppins-Regular"
+        fontSize: responsiveFontSize(1.8),
+        marginTop: responsiveHeight(3.5),
+        fontFamily: "Poppins-Regular",
+
     },
     lasttext: {
 
@@ -366,7 +448,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: responsiveHeight(100),
         borderRadius: responsiveWidth(5),
+
         // alignItems: 'center',
+    },
+    contentContainer1: {
+        backgroundColor: '#fff',
+        height: responsiveHeight(100),
+        borderRadius: responsiveWidth(5),
+        alignItems: 'center',
     },
     weigthview: {
         flexDirection: 'row',
@@ -402,13 +491,13 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: '#27AE60',
         justifyContent: 'center',
-        marginHorizontal: responsiveWidth(7),
+        marginHorizontal: responsiveWidth(4.2),
         padding: responsiveHeight(2),
         marginTop: responsiveHeight(5),
         borderRadius: responsiveWidth(4),
-        fontFamily: "Poppins-Bold",
-        fontSize:responsiveFontSize(2.2),
-        elevation:4
+        fontFamily: "Poppins-Medium",
+        fontSize: responsiveFontSize(2),
+        elevation: 4
     },
 
     // container: {

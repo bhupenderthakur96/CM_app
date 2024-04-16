@@ -92,11 +92,14 @@ export default function Item() {
               <TextInput
                 label="Enter Name"
                 mode="outlined"
-                outlineStyle={{ borderWidth: 0.2 }}
-                theme={{
-                  roundness: 11,
-                  color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                }}
+                outlineStyle={{ 
+                  borderWidth:responsiveWidth(0.2),
+                  borderColor:"#C8C8C8"
+                 }}
+                 theme={{
+                  roundness: 15,
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+              }}
                 value={firstName}
                 onChangeText={text => setFirstName(text)}
 
@@ -109,11 +112,14 @@ export default function Item() {
               <TextInput
                 label="Enter Email"
                 mode="outlined"
-                outlineStyle={{ borderWidth: 0.2 }}
-                theme={{
-                  roundness: 11,
-                  color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                }}
+                outlineStyle={{ 
+                  borderWidth:responsiveWidth(0.2),
+                  borderColor:"#C8C8C8"
+                 }}
+                 theme={{
+                  roundness: 15,
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+              }}
                 value={email}
                 onChangeText={text => setEmail(text)}
                 error={!!emailError}
@@ -128,11 +134,14 @@ export default function Item() {
               <TextInput
                 label="Enter Phone"
                 mode="outlined"
-                outlineStyle={{ borderWidth: 0.2 }}
-                theme={{
-                  roundness: 11,
-                  color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                }}
+                outlineStyle={{ 
+                  borderWidth:responsiveWidth(0.2),
+                  borderColor:"#C8C8C8"
+                 }}
+                 theme={{
+                  roundness: 15,
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+              }}
                 value={phoneNO}
                 onChangeText={text => setphoneNO(text)}
 
@@ -145,11 +154,14 @@ export default function Item() {
               <TextInput
                 label="Enter password"
                 mode="outlined"
-                outlineStyle={{ borderWidth: 0.2 }}
-                theme={{
-                  roundness: 11,
-                  color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                }}
+                outlineStyle={{ 
+                  borderWidth:responsiveWidth(0.2),
+                  borderColor:"#C8C8C8"
+                 }}
+                 theme={{
+                  roundness: 15,
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+              }}
                 value={password}
                 onChangeText={text => setPassword(text)}
                 error={!!passwordError}
@@ -180,11 +192,14 @@ export default function Item() {
               <TextInput
                 label="Confirm password"
                 mode="outlined"
-                outlineStyle={{ borderWidth: 0.2 }}
-                theme={{
-                  roundness: 11,
-                  color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                }}
+                outlineStyle={{ 
+                  borderWidth:responsiveWidth(0.2),
+                  borderColor:"#C8C8C8"
+                 }}
+                 theme={{
+                  roundness: 15,
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+              }}
                 value={confirmPassword}
                 onChangeText={text => setConfirmPassword(text)}
                 error={!!passwordError}
@@ -220,17 +235,20 @@ export default function Item() {
                 textStyle={{ color: "#0A0B1E" }}
                 size={22} 
               />
-              <Text style={{ paddingTop:responsiveHeight(.5), color: "#0A0B1E",fontFamily:"Poppins-Regular" }}>I have read the terms and conditions    </Text>
+              <Text style={{ 
+                paddingTop:responsiveHeight(.5), 
+                color: "#0A0B1E",
+                fontFamily:"Poppins-Regular",
+                fontSize:responsiveFontSize(1.5) 
+                }}>I have read the terms and conditions{"\n"}guidelines.</Text>
             
             </View>
-            <Text style={{  color: "#0A0B1E", marginLeft:responsiveHeight(9),fontFamily:"Poppins-Regular"}}>guidelines </Text>
-
             <View>
               <TouchableOpacity
                 style={styles.touch}
                 title="Go to Details"
                 onPress={() => handleLogin()}>
-                <Text style={styles.login}>sign Up</Text>
+                <Text style={styles.login}>Sign Up</Text>
               </TouchableOpacity>
             </View>
 
@@ -286,7 +304,7 @@ const styles = StyleSheet.create({
     color: '#0A0B1E',
     textAlign: 'center',
     fontSize: responsiveFontSize(3.1),
-    fontFamily:"Poppins-Regular"
+    fontFamily:"Poppins-Medium"
   },
   emailContainer: {
     alignSelf: 'center',
@@ -296,7 +314,8 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90),
     height: responsiveHeight(6.8),
     fontSize: responsiveFontSize(2),
-    fontFamily:"Poppins-Regular"
+    fontFamily:"Poppins-Regular",
+    backgroundColor:"#FFFFFF"
   },
   passwordContainer: {
     alignSelf: 'center',
@@ -306,7 +325,9 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90),
     marginTop: responsiveHeight(3),
     fontSize: responsiveFontSize(2),
-    fontFamily: 'Regular',
+    fontFamily:"Poppins-Regular",
+    backgroundColor:"#FFFFFF",
+  
   },
   eyeContainer: {
     position: 'absolute',
@@ -342,7 +363,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: responsiveHeight(1.7),
     fontSize: responsiveFontSize(2.1),
-    fontFamily:"Poppins-Regular"
+    fontFamily:"Poppins-Medium"
   },
 
   lastview: {
@@ -352,12 +373,12 @@ const styles = StyleSheet.create({
   },
   not: {
     color: '#757680',
-    fontSize: responsiveFontSize(2),
+    fontSize: responsiveFontSize(1.8),
     fontFamily:"Poppins-Regular"
   },
   up: {
     color: '#6369F3',
-    fontSize: responsiveFontSize(2.1),
+    fontSize: responsiveFontSize(1.8),
     textDecorationLine: 'underline',
     fontFamily:"Poppins-Regular"
   },

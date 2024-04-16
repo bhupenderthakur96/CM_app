@@ -49,10 +49,10 @@ export default function YourOrderScreen({ navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Image
                             style={{
-                                height: responsiveHeight(3),
-                                width: responsiveWidth(5),
+                                height: responsiveHeight(5),
+                                width: responsiveWidth(6),
                                 marginTop: responsiveHeight(1),
-                                marginLeft: responsiveWidth(1)
+                                marginLeft: responsiveWidth(2.5),
                             }}
                             source={require('../../assets/Icons/back.png')}
                             resizeMode="contain"
@@ -62,7 +62,7 @@ export default function YourOrderScreen({ navigation }) {
                         style={{
                             color: "white",
                             textAlign: "center",
-                            marginVertical: responsiveHeight(0.8),
+                            marginVertical: responsiveHeight(2),
                             fontSize: responsiveFontSize(2),
                             fontFamily: "Poppins-Medium",
                             // alignSelf:"center"
@@ -78,20 +78,26 @@ export default function YourOrderScreen({ navigation }) {
                         resizeMode="contain"
                     />
                     <View style={styles.weigthview}>
-                        <Text style={{ fontFamily: "Poppins-Regular", fontWeight: "bold" }}>Item</Text>
+                        <Text style={{ fontFamily: "Poppins-Regular", fontSize:responsiveFontSize(1.5), color:"#6e6f7a" }}>Item</Text>
                         <Text style={styles.wighttext1}>Volumatric Size(3)</Text>
-                        <Text style={{ fontFamily: "Poppins-Regular", fontWeight: "bold", marginRight: responsiveWidth(2) }}>Weight(kg)</Text>
+                        <Text 
+                        style={{ 
+                            fontFamily: "Poppins-Regular", 
+                            marginRight: responsiveWidth(2),
+                            fontSize:responsiveFontSize(1.5) ,
+                            color:"#6e6f7a" 
+                            }}>Weight(kg)</Text>
                     </View>
 
                     <View style={styles.weigthview1}>
-                        <Text style={{ fontFamily: "Poppins-Regular", fontWeight: "bold" }}>Washing Machine</Text>
-                        <Text style={{ fontFamily: "Poppins-Regular", fontWeight: "bold" }}>0.5-0.7</Text>
+                        <Text style={{ fontFamily: "Poppins-Regular",color:"#0A0B1E",fontSize:responsiveFontSize(1.5)  }}>Washing Machine</Text>
+                        <Text style={{ fontFamily: "Poppins-Regular",color:"#0A0B1E",fontSize:responsiveFontSize(1.5)  }}>0.5-0.7</Text>
                         <Text style={styles.wighttext2}>50-80</Text>
                     </View>
 
                     <View
                         style={{
-                            backgroundColor: "#F6F6FE",
+                            backgroundColor: "#f7f7fc",
                             // padding: responsiveHeight(1),
                             marginHorizontal: responsiveWidth(3),
                             marginTop: responsiveHeight(3),
@@ -110,9 +116,9 @@ export default function YourOrderScreen({ navigation }) {
                                 resizeMode="contain"
                             />
                             <View style={{ position: "absolute", marginLeft: responsiveWidth(10) }}>
-                                <Text style={{fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.5)}}>From</Text>
+                                <Text style={{fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.5),color:"#c6c6d0"}}>From</Text>
                                 <View style={{flexDirection:"row",justifyContent:"space-between"}}>
-                                <Text style={{fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.5)}}>Westhiemer RD. Santa Ana</Text>
+                                <Text style={{fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.5),color:"#0A0B1E"}}>Westhiemer RD. Santa Ana</Text>
                                 <Image
                                 style={{ height: responsiveHeight(2.5), width: responsiveWidth(10), }}
                                 source={require('../../assets/Icons/cross.png')}
@@ -127,13 +133,13 @@ export default function YourOrderScreen({ navigation }) {
                                         marginTop:responsiveHeight(1.3)
                                     }}
                                 />
-                                <Text style={{ marginTop: responsiveHeight(1.5),fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.5) }}>To</Text>
+                                <Text style={{ marginTop: responsiveHeight(1.5),fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.5),color:"#c6c6d0" }}>To</Text>
                                 <View style={{flexDirection:"row",justifyContent:"space-between"}}>
                                 <Text 
                                 style={{
                                     fontFamily:"Poppins-Regular",
                                     fontSize:responsiveFontSize(1.5),
-                                    
+                                    color:"#0A0B1E"
                                     }}>Preston Rd.Inglewood,Maine</Text>
                                 <Image
                                 style={{ height: responsiveHeight(2.5), width: responsiveWidth(10) }}
@@ -156,12 +162,12 @@ export default function YourOrderScreen({ navigation }) {
                             resizeMode="contain"
                         />
                         <Text style={{
-                            fontFamily: 'Poppins-Bold',
+                            fontFamily: 'Poppins-SemiBold',
                             fontSize: responsiveFontSize(1.8),
                             marginRight: responsiveWidth(45)
                         }}>Express</Text>
                         <Text style={{
-                            fontFamily: 'Poppins-Bold',
+                             fontFamily: 'Poppins-SemiBold',
                             fontSize: responsiveFontSize(1.8),
                             marginRight: responsiveWidth(5)
                         }}>$300</Text>
@@ -234,12 +240,12 @@ const styles = StyleSheet.create({
     wighttext1: {
         marginLeft: responsiveHeight(13.5),
         fontFamily: "Poppins-Regular",
-        fontWeight: "bold"
+        fontSize:responsiveFontSize(1.3),
+        color:"#6e6f7a"
     },
     wighttext2: {
         marginRight: responsiveHeight(4.5),
-        fontFamily: "Poppins-Regular",
-        fontWeight: "bold"
+        fontFamily: "Poppins-Regular",color:"#0A0B1E",fontSize:responsiveFontSize(1.5) 
     },
     wighttext3: {
         marginRight: responsiveHeight(4.3),
@@ -363,10 +369,10 @@ const styles = StyleSheet.create({
         marginTop: responsiveHeight(16)
     },
     buttonText: {
-        color: '#fff',
+        color: '#FFFFFF',
         textAlign: 'center',
         fontSize: responsiveFontSize(2),
-        fontFamily: "Poppins-Bold",
+        fontFamily: "Poppins-Medium",
        
         // marginTop:responsiveHeight(10)
     },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import {
   StyleSheet,
   Text,
@@ -17,6 +17,7 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import {useNavigation} from '@react-navigation/native'
+import sstyles from '../../sstyle';
 
 
 export default function LoginScreen() {
@@ -28,13 +29,23 @@ export default function LoginScreen() {
   const [hidePassword, setHidePassword] = useState(true);
   const [isLoading, setIsLoading] = useState(false); // Indicator for loading state
 
-
+ 
   const [nameError, setNameError] = useState('');
  
   const [passError, setPassError] = useState('')
- 
- 
 
+  const passwordRef = useRef(null);
+  function handleEmailSubmit() {
+    // passValidator();
+    passwordRef.current.focus();
+  }
+  function handlePasswordSubmit() {
+    // passValidator();
+    // Here you can trigger any action you want after password field is filled
+    // For example, you can submit the form or navigate to another screen
+    // For now, let's just dismiss the keyboard
+    Keyboard.dismiss();
+  }
 
   function blurEmail(){
     // let rjx=/^[a-zA-z]+$/;
@@ -109,11 +120,16 @@ export default function LoginScreen() {
               <TextInput
                 label="Enter Email"
                 mode="outlined"
-                outlineStyle={{ borderWidth: 0.3 }}
-                theme={{
+                outlineStyle={{ 
+                  borderWidth:responsiveWidth(0.2),
+                  borderColor:"#C8C8C8"
+                 }}
+                 
+                 placeholderTextColor={"#C8C8C8"}
+                 theme={{
                   roundness: 15,
-                  color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                }}
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+              }}
                 // value={email}
                 // onChangeText={(text) => setEmail(text)}
 
@@ -123,8 +139,9 @@ export default function LoginScreen() {
                   blurEmail(),
                   emailValidator()
                 }}
-                
+                onSubmitEditing={handleEmailSubmit}
                 style={styles.email}
+              
               />
                {/* <Text >{emailError}</Text>
               <Text >{nameError}</Text> */}
@@ -132,17 +149,22 @@ export default function LoginScreen() {
             </View>
             <View style={styles.passwordContainer}>
               <TextInput
+               ref={passwordRef}
                 label="Enter password"
                 mode="outlined"
-                outlineStyle={{ borderWidth: 0.3 }}
-                theme={{
+                outlineStyle={{ 
+                  borderWidth:responsiveWidth(0.2),
+                  borderColor:"#C8C8C8"
+                 }}
+                 theme={{
                   roundness: 15,
-                  color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                }}
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+              }}
                 value={password}
                 // onChangeText={(text) => setPassword(text)}
                 secureTextEntry={hidePassword} // Toggle secure text entry based on hidePassword state
                 style={styles.password}
+                onSubmitEditing={handlePasswordSubmit}
                 
                 onChange={()=>{
                   pass(),
@@ -167,14 +189,22 @@ export default function LoginScreen() {
                 />
               </TouchableOpacity>
             </View>
-
             <Text style={styles.forgotText}>Forgot password?</Text>
 
-            <TouchableOpacity style={styles.touch}  onPress={() => navigation.navigate("drawer") }>
+            <TouchableOpacity style={styles.touch}  onPress={() => navigation.navigate("home") }>
               {isLoading ? (
                 <ActivityIndicator size="small" color="#ffffff" style={styles.activityIndicator} />
               ) : (
-                <Text style={styles.loginText}>Login</Text>
+                <View 
+                style={sstyles.buttonText}
+                >
+                <Text style={{
+                   fontFamily: "Poppins-Medium",
+                   fontSize: responsiveFontSize(2),
+                   color: '#fff',
+                   textAlign: 'center',
+                }}>Login</Text>
+                </View>
               )}
             </TouchableOpacity>
 
@@ -202,7 +232,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0A0B1E',
   },
   innerContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     marginTop: responsiveHeight(21),
     borderTopLeftRadius: responsiveWidth(8),
     borderTopRightRadius: responsiveWidth(8),
@@ -235,8 +265,7 @@ const styles = StyleSheet.create({
     color: '#0A0B1E',
     textAlign: 'center',
     fontSize: responsiveFontSize(3.1),
-    fontFamily:"Poppins-Regular",
-    fontWeight:"bold"
+    fontFamily:"Poppins-Medium",
   },
   emailContainer: {
     alignSelf: 'center',
@@ -246,7 +275,9 @@ const styles = StyleSheet.create({
     width: responsiveWidth(90),
     height: responsiveHeight(6.8),
     fontSize: responsiveFontSize(2),
-    fontFamily:"Poppins-Regular"
+    fontFamily:"Poppins-Regular",
+    backgroundColor:"#FFFFFF",
+   
   },
   passwordContainer: {
     alignSelf: 'center',
@@ -254,13 +285,14 @@ const styles = StyleSheet.create({
   password: {
     height: responsiveHeight(6.8),
     width: responsiveWidth(90),
-    marginTop: responsiveHeight(3),
+    marginTop: responsiveHeight(1.5),
     fontSize: responsiveFontSize(2),
-    fontFamily:"Poppins-Regular"
+    fontFamily:"Poppins-Regular",
+    backgroundColor:"#FFFFFF"
   },
   eyeContainer: {
     position: 'absolute',
-    top:responsiveHeight(3.5),
+    top:responsiveHeight(2),
     right: responsiveHeight(4),
     height: responsiveHeight(8),
     width: responsiveWidth(8),
@@ -273,10 +305,10 @@ const styles = StyleSheet.create({
   },
   forgotText: {
     color: '#6369F3',
-    fontSize: responsiveFontSize(2),
+    fontSize: responsiveFontSize(1.8),
     marginLeft: responsiveWidth(7),
-    paddingTop: responsiveHeight(1),
-    fontFamily:"Poppins-Regular"
+    fontFamily:"Poppins-Regular",
+    
   },
   touch: {
     height: responsiveHeight(7.2),
@@ -292,8 +324,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     fontSize: responsiveFontSize(2.1),
-    fontFamily:"Poppins-Regular",
-    fontWeight:"bold"
+    fontFamily:"Poppins-Medium",
+    // fontWeight:"bold"
   },
   touch2: {
     height: responsiveHeight(7.2),
@@ -310,9 +342,9 @@ const styles = StyleSheet.create({
     color: '#6369F3',
     textAlign: 'center',
     fontSize: responsiveFontSize(2),
-    marginTop: responsiveHeight(1.5),
-    fontSize: responsiveFontSize(2.3),
-    fontFamily:"Poppins-Regular"
+    marginTop: responsiveHeight(1.7),
+    fontSize: responsiveFontSize(2.1),
+    fontFamily:"Poppins-Medium"
   },
   lastview: {
     flexDirection: 'row',
@@ -321,12 +353,12 @@ const styles = StyleSheet.create({
   },
   not: {
     color: '#757680',
-    fontSize: responsiveFontSize(2),
+    fontSize: responsiveFontSize(1.8),
     fontFamily:"Poppins-Regular"
   },
   up: {
     color: '#6369F3',
-    fontSize: responsiveFontSize(2.1),
+    fontSize: responsiveFontSize(1.8),
     textDecorationLine: 'underline',
     fontFamily:"Poppins-Regular"
   },

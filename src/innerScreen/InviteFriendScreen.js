@@ -1,35 +1,49 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 import React from 'react'
 import {
     responsiveFontSize,
     responsiveHeight,
     responsiveWidth,
 } from 'react-native-responsive-dimensions';
+import sstyles from '../../sstyle';
 
 
 const InviteFriendScreen = () => {
     return (
+      
         <View style={{ flex: 1, backgroundColor: "black" }}>
+              <ScrollView>
             <View style={styles.container}>
                 <Image
                     style={styles.image}
                     source={require('../../assets/Images/character.png')}
                     resizeMode="contain"
                 />
-                <Text style={{textAlign:"center",fontSize:17, fontFamily:"Poppins-Regular"}}>Invite a friend and earn amazing{"\n"}discounts bonuses and free rides!</Text>
+                <Text style={{
+                    textAlign:"center",
+                    fontSize:responsiveFontSize(1.7),
+                     fontFamily:"Poppins-Regular",
+                     color:"#0A0B1E"
+                     }}>Invite a friend and earn amazing{"\n"}discounts bonuses and free rides!</Text>
                 <View 
                 style={{
                     flexDirection:"row",
                     justifyContent:"space-between",
-                    marginTop:30,
-                    marginHorizontal:25,
+                    marginTop:responsiveHeight(3),
+                    marginHorizontal:responsiveWidth(6),
                     borderWidth:2,
                     borderStyle: "dashed",
-                    padding:10,
-                    borderRadius:16
+                    padding:responsiveWidth(1.8),
+                    borderRadius:responsiveWidth(5)
                 }}
                 >
-                    <Text style={{fontSize:18, fontFamily:"Poppins-Regular"}}>R231228001</Text>
+                    <Text style={{
+                        fontSize:responsiveFontSize(2), 
+                        fontFamily:"Poppins-Medium",
+                        color:"#0A0B1E",
+                        marginTop:responsiveHeight(1),
+                        marginLeft:responsiveWidth(2)
+                        }}>R231228001</Text>
                     <Text 
                     style={{
                         backgroundColor:"#6369F3",
@@ -37,14 +51,25 @@ const InviteFriendScreen = () => {
                         color:"#ffffff",
                         paddingHorizontal:20,
                         borderRadius:10,
-                        fontFamily:"Poppins-Regular"
+                        fontFamily:"Poppins-Medium"
                     }}
                     >
                         Copy</Text>
                 </View>
-                <Text style={styles.buttonText}>Share</Text>
+                <View  style={[sstyles.buttonText,{marginTop:responsiveHeight(25)}]}>
+                <Text 
+                style={{
+                    fontFamily: "Poppins-Medium",
+                    fontSize: responsiveFontSize(2),
+                    color: '#fff',
+                    textAlign: 'center',
+                }}
+                >Share</Text>
+                </View>
             </View>
+            </ScrollView>
         </View>
+        
     )
 }
 
@@ -55,6 +80,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "white",
         borderRadius: responsiveWidth(5),
+        height:responsiveHeight(100)
     },
     image:{
         height:"40%",
@@ -73,8 +99,8 @@ const styles = StyleSheet.create({
         padding:responsiveHeight(2),
         marginTop:responsiveHeight(27),
         borderRadius:responsiveWidth(4),
-        fontSize:18,
-        fontFamily:"Poppins-Regular",
-        elevation:4
+        fontFamily:"Poppins-Medium",
+        elevation:4,
+        fontSize:responsiveFontSize(2)
     },
 })
