@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  SafeAreaView,
+  ScrollView,
 } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -42,27 +44,13 @@ export default function Item() {
     return password.length >= 6; // Minimum 6 characters
   };
 
-  const handleLogin = () => {
-    if (!validateEmail(email)) {
-      setEmailError('Invalid email');
-    } else {
-      setEmailError('');
-    }
 
-    if (!validatePassword(password)) {
-      setPasswordError('Password must be at least 6 characters');
-    } else {
-      setPasswordError('');
-
-      // Perform login logic here
-      // For example:
-      navigation.navigate('Register');
-    }
-  };
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <KeyboardAwareScrollView>
+    <ScrollView>
+      <SafeAreaView>
+     
+     
         <View style={styles.container}>
           <View style={styles.innerContainer}>
             <View style={styles.imageContainer}>
@@ -247,7 +235,7 @@ export default function Item() {
               <TouchableOpacity
                 style={styles.touch}
                 title="Go to Details"
-                onPress={() => handleLogin()}>
+                onPress={() =>{navigation.navigate("drawer")}}>
                 <Text style={styles.login}>Sign Up</Text>
               </TouchableOpacity>
             </View>
@@ -260,8 +248,10 @@ export default function Item() {
             </View>
           </View>
         </View>
-      </KeyboardAwareScrollView>
-    </TouchableWithoutFeedback>
+    
+      
+      </SafeAreaView>
+      </ScrollView>
   );
 }
 

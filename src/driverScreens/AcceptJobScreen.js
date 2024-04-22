@@ -22,7 +22,7 @@ const AcceptJobScreen = ({navigation}) => {
         .map((_, index) => `index-${index}`),
     [],
   );
-  const snapPoints = useMemo(() => ['15%','50%',], []);
+  const snapPoints = useMemo(() => ['35%','50%',], []);
 
   // callbacks
   const handleSheetChange = useCallback(index => {
@@ -125,7 +125,7 @@ const AcceptJobScreen = ({navigation}) => {
               <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#c0c0c5" }}>PickUp</Text>
               <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E" }}>Westhiemer RD Santa Ana</Text>
               <Text style={{ marginTop: responsiveHeight(0.6), fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#c0c0c5" }}>Drop Off</Text>
-              <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E" }}>Preston Rd. Inglewood, Maine</Text>
+              <Text style={{ marginTop: responsiveHeight(0.3),fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E" }}>Preston Rd. Inglewood, Maine</Text>
             </View>
           </View>
           <View style={styles.idview}>

@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import {
   responsiveFontSize,
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
-
+import { useNavigation } from '@react-navigation/native';
 
 const SettingScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={{ flex: 1, backgroundColor: "black" }}>
       <View style={styles.container}>
@@ -23,12 +24,18 @@ const SettingScreen = () => {
             source={require('../../assets/Icons/pass.png')}
             resizeMode="contain"
           />
+<TouchableOpacity 
+onPress={()=>{navigation.navigate("change")}}
+
+>
           <Text style={{ 
             alignSelf: "center",
             fontSize:responsiveFontSize(1.7),
            fontFamily:"Poppins-Medium",
-           color:"#0A0B1E"
+           color:"#0A0B1E",
+           marginTop: responsiveHeight(1.4)
          }}>Change Password</Text>
+</TouchableOpacity>
         </View>
 
         <View 

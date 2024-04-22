@@ -8,15 +8,16 @@ import {
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import LogoScreen from '../outerScreen/LogoScreen';
 export default function Home({ navigation }) {
-  // useEffect(()=>{
-  //   navigation.navigate("driverApply")
-  // },[])
+ 
   const [termsChecked, setTermsChecked] = useState(false);
 
   const images = [0, 1, 2, 3];
 
   const RenderImageItem = ({ item,onPress }) => (
-<TouchableOpacity onPress={onPress}>
+<TouchableOpacity 
+style={{marginBottom:responsiveHeight(1)}}
+onPress={onPress} 
+>
     <View
       style={{
         height: responsiveHeight(19),
@@ -32,23 +33,7 @@ export default function Home({ navigation }) {
         justifyContent: "space-around",
         marginLeft: responsiveHeight(2),
        elevation:2,
-        // shadowColor: "#EBEBCE",
-        // shadowOffset: {
-        //   width: 0,
-        //   height: 2,
-        // },
         shadowOpacity: 0.25,
-        // shadowRadius: 5.84,
-        // // For Android
-        // elevation: 5,
-        // // For iOS
-        // shadowOffset: {
-        //   width: 0,
-        //   height: 2,
-        // },
-        // shadowOpacity: 0.25,
-        // shadowRadius: 3.84,
-
       }}>
 
       <View
@@ -60,17 +45,9 @@ export default function Home({ navigation }) {
         
         
         }}>
-        <Text style={{fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.8),color: "#C8C8C8" }}>Job ID: <Text style={{fontFamily:"Poppins-Bold",fontSize:responsiveFontSize(1.8),color: "#0A0B1E"}}>684</Text></Text>
+        <Text style={{fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.8),color: "#0A0B1E" }}>Job ID: <Text style={{fontFamily:"Poppins-Bold",fontSize:responsiveFontSize(1.8),color: "#0A0B1E"}}>684</Text></Text>
 
-        <BouncyCheckbox
-          isChecked={termsChecked}
-          onPress={() => setTermsChecked(!termsChecked)}
-          fillColor="#27AE60"
-          unfillColor="#FFFFFF"
-          iconStyle={{ borderColor: '#0A0B1E' }}
-          textStyle={{ color: '#0A0B1E' }}
-          size={22}
-        />
+      
 
       </View>
       <View>
@@ -108,7 +85,9 @@ export default function Home({ navigation }) {
     </TouchableOpacity>
   );
   const RenderImageItem1 = ({ item, onPress }) => (
-<TouchableOpacity onPress={onPress}>
+<TouchableOpacity
+style={{marginBottom:responsiveHeight(1)}}
+onPress={onPress}>
     <View
       style={{
         height: responsiveHeight(19),
@@ -152,17 +131,9 @@ export default function Home({ navigation }) {
         
         
         }}>
-        <Text style={{fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.8),color: "#C8C8C8" }}>Job ID: <Text style={{fontFamily:"Poppins-Bold",fontSize:responsiveFontSize(1.8),color: "#0A0B1E"}}>684</Text></Text>
+        <Text style={{fontFamily:"Poppins-Regular",fontSize:responsiveFontSize(1.8),color: "#0A0B1E" }}>Job ID: <Text style={{fontFamily:"Poppins-Bold",fontSize:responsiveFontSize(1.8),color: "#0A0B1E"}}>684</Text></Text>
 
-        <BouncyCheckbox
-          isChecked={termsChecked}
-          onPress={() => setTermsChecked(!termsChecked)}
-          fillColor="#27AE60"
-          unfillColor="#FFFFFF"
-          iconStyle={{ borderColor: '#0A0B1E' }}
-          textStyle={{ color: '#0A0B1E' }}
-          size={22}
-        />
+       
 
       </View>
       <View>
@@ -248,7 +219,8 @@ export default function Home({ navigation }) {
                 fontSize: responsiveFontSize(3),
                 color: 'black',
                 fontFamily:"Poppins-Medium",
-                fontSize:responsiveFontSize(2)
+                fontSize:responsiveFontSize(2),
+                marginTop:responsiveHeight(0.8)
               }}>
               Work List
             </Text>
@@ -308,11 +280,11 @@ export default function Home({ navigation }) {
                 fontSize: responsiveFontSize(2),
                 color: '#0A0B1E',
                 fontFamily:"Poppins-Medium",
-                
+                marginTop:responsiveHeight(0.8)
               }}>
               Available Job
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('Accept')} >
               <View
                 style={{
                   backgroundColor: '#6369F3',
@@ -331,7 +303,7 @@ export default function Home({ navigation }) {
                     justifyContent: 'center',
                     fontSize: responsiveFontSize(1.5),
                   }}>
-                  View all
+                  View All
                 </Text>
               </View>
             </TouchableOpacity>

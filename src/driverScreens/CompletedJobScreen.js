@@ -45,7 +45,7 @@ const StartJobScreen = ({ setStatus }) => {
         .map((_, index) => `index-${index}`),
     [],
   );
-  const snapPoints = useMemo(() => ['15%', '85%',], []);
+  const snapPoints = useMemo(() => ['65%', '85%',], []);
 
   // callbacks
   const handleSheetChange = useCallback(index => {

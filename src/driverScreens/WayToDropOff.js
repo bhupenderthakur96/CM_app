@@ -21,7 +21,7 @@ const StartJobScreen = ({navigation}) => {
         .map((_, index) => `index-${index}`),
     [],
   );
-  const snapPoints = useMemo(() => ['15%','62%',], []);
+  const snapPoints = useMemo(() => ['50%','62%',], []);
 
   // callbacks
   const handleSheetChange = useCallback(index => {
@@ -121,8 +121,8 @@ const StartJobScreen = ({navigation}) => {
                             <View style={{ position: "absolute", marginLeft: responsiveWidth(10), }}>
                                 <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#c0c0c5" }}>PickUp</Text>
                                 <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E" }}>Westhiemer RD Santa Ana</Text>
-                                <Text style={{ marginTop: responsiveHeight(0.1), fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#c0c0c5" }}>Drop Off</Text>
-                                <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E",marginTop:responsiveHeight(0.5) }}>Preston Rd. Inglewood, Maine</Text>
+                                <Text style={{ marginTop: responsiveHeight(0.6), fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#c0c0c5" }}>Drop Off</Text>
+                                <Text style={{marginTop: responsiveHeight(0.3), fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E",marginTop:responsiveHeight(0.5) }}>Preston Rd. Inglewood, Maine</Text>
                             </View>
                         </View>
                         <View style={styles.idview}>
@@ -343,6 +343,7 @@ buttonText: {
   textAlign: 'center',
   fontSize: responsiveFontSize(2),
   marginTop: responsiveHeight(2),
+  fontFamily:"Poppins-Medium"
 },
 });
 

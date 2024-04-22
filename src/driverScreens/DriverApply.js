@@ -17,7 +17,15 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { Dropdown } from 'react-native-element-dropdown';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
+import Modal from 'react-native-modal';
+import sstyles from '../../sstyle';
 export default function DriverApply({ navigation }) {
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
+
     const [termsChecked, setTermsChecked] = useState(false); // State for checkbox
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isDatePickerVisible2, setDatePickerVisibility2] = useState(false);
@@ -35,7 +43,8 @@ export default function DriverApply({ navigation }) {
     const [hidePassword2, setHidePassword2] = useState(true);
     const [phoneNO, setphoneNO] = useState('');
     const [isTrue, SetIsTrue] = useState(false);
-    
+
+
     //end input fields states
 
     const showDatePicker = () => {
@@ -89,10 +98,11 @@ export default function DriverApply({ navigation }) {
         setDate2(a);
         hideDatePicker2();
     };
+
     return (
 
         <View style={{ flex: 1, backgroundColor: 'black' }}>
-           
+
             <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Image
@@ -121,18 +131,19 @@ export default function DriverApply({ navigation }) {
 
             </View>
             <ScrollView>
-            
-            <Image
-            source={require("../../assets/Images/line.png")}
-            style={{
-                width:responsiveWidth(2),
-                height:"100%",
-                position:"absolute",
-                marginTop:responsiveHeight(2)}}
-            // resizeMode="contain"
-            />
-             
-       
+
+                <Image
+                    source={require("../../assets/Images/line.png")}
+                    style={{
+                        width: responsiveWidth(2),
+                        height: "100%",
+                        position: "absolute",
+                        marginTop: responsiveHeight(2)
+                    }}
+                // resizeMode="contain"
+                />
+
+
                 <View style={styles.containerimageview}>
                     <View style={styles.emailContainer}>
                         <TextInput
@@ -315,149 +326,167 @@ export default function DriverApply({ navigation }) {
                             Vehicle Details
                         </Text>
                     </View>
-                    <View style={styles.Payview1}>
-                        <Text
-                            style={{
-                                fontFamily: 'Poppins-Medium',
-                                fontSize: responsiveFontSize(1.8),
-                                color: '#0A0B1E',
-                            }}>
-                            Upload vehicle image
-                        </Text>
-                        <Image
-                            style={{ height: responsiveHeight(4), width: responsiveWidth(9) }}
-                            source={require('../../assets/Icons/cloud.png')}
-                        />
-                    </View>
-                    <View style={styles.Payview}>
-                        <View>
-                            <Text style={{
-                                fontFamily: 'Poppins-Medium',
-                                fontSize: responsiveFontSize(1.8), color: '#0A0B1E',
-                            }}>Vehicle Registration</Text>
-                            <TextInput
-                                style={{
-                                    width: responsiveWidth(48),
-                                    backgroundColor: '#F6F6FF',
-                                    height: responsiveHeight(6),
-                                }}
-                                label="Expire Date"
-                                mode="outlined"
-                                outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8' }}
-                                theme={{
-                                    roundness: 12,
-                                    color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                                }}
-                                placeholder="00-00-0000"
-                                value={date2}
 
+                    <View >
+                        <View style={styles.Payview1}>
+                            <Text
+                                style={{
+                                    fontFamily: 'Poppins-Medium',
+                                    fontSize: responsiveFontSize(1.8),
+                                    color: '#0A0B1E',
+                                }}>
+                                Upload vehicle image
+                            </Text>
+                            <Image
+                                style={{ height: responsiveHeight(4), width: responsiveWidth(9) }}
+                                source={require('../../assets/Icons/cloud.png')}
                             />
                         </View>
-                        <TouchableOpacity onPress={showDatePicker2}>
+                        <View style={styles.Payview}>
                             <View>
-                                <Image
+                                <Text style={{
+                                    fontFamily: 'Poppins-Medium',
+                                    fontSize: responsiveFontSize(1.8), color: '#0A0B1E',
+                                }}>Vehicle Registration</Text>
+                                <TextInput
                                     style={{
-                                        height: responsiveHeight(5),
-                                        width: responsiveWidth(5),
-
-                                        right: responsiveWidth(18),
-                                        top: responsiveHeight(2.1),
+                                        width: responsiveWidth(48),
+                                        backgroundColor: '#F6F6FF',
+                                        height: responsiveHeight(6),
                                     }}
-                                    source={require('../../assets/Icons/calender.png')}
-                                    resizeMode="contain"
-                                />
-                                <DateTimePickerModal
-                                    isVisible={isDatePickerVisible2}
-                                    mode="date"
-                                    onConfirm={handleConfirm2}
-                                    onCancel={hideDatePicker}
+                                    label="Expire Date"
+                                    mode="outlined"
+                                    outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8' }}
+                                    theme={{
+                                        roundness: 12,
+                                        color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                    }}
+                                    placeholder="00-00-0000"
+                                    value={date2}
+
+
                                 />
                             </View>
-                        </TouchableOpacity>
-                        <Image
-                            style={{ height: responsiveHeight(4), width: responsiveWidth(9) }}
-                            source={require('../../assets/Icons/cloud.png')}
-                        />
+                            <TouchableOpacity onPress={showDatePicker2}>
+                                <View>
+                                    <Image
+                                        style={{
+                                            height: responsiveHeight(5),
+                                            width: responsiveWidth(5),
+
+                                            right: responsiveWidth(18),
+                                            top: responsiveHeight(2.1),
+                                        }}
+                                        source={require('../../assets/Icons/calender.png')}
+                                        resizeMode="contain"
+                                    />
+                                    <DateTimePickerModal
+                                        isVisible={isDatePickerVisible2}
+                                        mode="date"
+                                        onConfirm={handleConfirm2}
+                                        onCancel={hideDatePicker}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <Image
+                                style={{ height: responsiveHeight(4), width: responsiveWidth(9) }}
+                                source={require('../../assets/Icons/cloud.png')}
+                            />
+                        </View>
+
+                        <View style={styles.textinputmainview}>
+                            {renderLabel()}
+                            <Dropdown
+                                style={[styles.dropdown, isFocus && { borderColor: '#C8C8C8' }]}
+                                placeholderStyle={styles.placeholderStyle}
+                                selectedTextStyle={styles.selectedTextStyle}
+                                inputSearchStyle={styles.inputSearchStyle}
+                                iconStyle={styles.iconStyle}
+                                data={data}
+                                search
+                                maxHeight={300}
+                                labelField="label"
+                                valueField="value"
+                                placeholder={!isFocus ? 'Select Vehicle' : '...'}
+                                searchPlaceholder="Search..."
+                                value={value}
+                                onFocus={() => setIsFocus(true)}
+                                onBlur={() => setIsFocus(false)}
+                                onChange={item => {
+                                    setValue(item.value);
+                                    setIsFocus(false);
+                                }}
+                            />
+                            <TextInput
+                                label="Vehicle year"
+                                mode="outlined"
+                                outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
+                                theme={{
+                                    roundness: 10,
+
+                                    colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                }}
+                                style={styles.textinputstyle}
+                            />
+
+
+                            <TextInput
+                                label="Plate number"
+                                mode="outlined"
+                                outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
+                                theme={{
+                                    roundness: 10,
+
+                                    colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                }}
+                                style={styles.textinputstyle}
+                            />
+
+                            <TextInput
+                                label="Chassis Number"
+                                placeholder='Chassis Number'
+                                placeholderTextColor={"#C8C8C8"}
+                                mode="outlined"
+                                outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
+                                theme={{
+                                    roundness: 10,
+
+                                    colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                }}
+                                style={styles.textinputstyle}
+                            />
+                        </View>
                     </View>
 
-                    <View style={styles.textinputmainview}>
-                        {renderLabel()}
-                        <Dropdown
-                            style={[styles.dropdown, isFocus && { borderColor: '#C8C8C8' }]}
-                            placeholderStyle={styles.placeholderStyle}
-                            selectedTextStyle={styles.selectedTextStyle}
-                            inputSearchStyle={styles.inputSearchStyle}
-                            iconStyle={styles.iconStyle}
-                            data={data}
-                            search
-                            maxHeight={300}
-                            labelField="label"
-                            valueField="value"
-                            placeholder={!isFocus ? 'Select Vehicle' : '...'}
-                            searchPlaceholder="Search..."
-                            value={value}
-                            onFocus={() => setIsFocus(true)}
-                            onBlur={() => setIsFocus(false)}
-                            onChange={item => {
-                                setValue(item.value);
-                                setIsFocus(false);
+
+                    <View style={{ marginTop: responsiveHeight(6), 
+                        
+                        marginLeft: responsiveWidth(2) }}>
+                        <TouchableOpacity
+                            style={{
+                                backgroundColor: '#6369F3',
+                                padding: responsiveHeight(1.5),
+                                borderRadius: responsiveWidth(3),
+                                bottom: responsiveHeight(4),
+                                elevation: 4,
+                                width: responsiveWidth(40),
+                              
                             }}
-                        />
-                        <TextInput
-                            label="Vehicle year"
-                            mode="outlined"
-                            outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
-                            theme={{
-                                roundness: 10,
-
-                                colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                            }}
-                            style={styles.textinputstyle}
-                        />
-
-
-                        <TextInput
-                            label="Plate number"
-                            mode="outlined"
-                            outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
-                            theme={{
-                                roundness: 10,
-
-                                colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                            }}
-                            style={styles.textinputstyle}
-                        />
-
-                        <TextInput
-                            label="Chassis Number"
-                            placeholder='Chassis Number'
-                            placeholderTextColor={"#C8C8C8"}
-                            mode="outlined"
-                            outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
-                            theme={{
-                                roundness: 10,
-
-                                colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
-                            }}
-                            style={styles.textinputstyle}
-                        />
-                    </View>
-                    <View style={{ marginTop: responsiveHeight(6),marginLeft:responsiveWidth(4) }}>
-                        <TouchableOpacity>
+                            onPress={toggleModal}
+                        >
                             <Text
                                 style={{
                                     color: '#fff',
                                     textAlign: 'center',
-                                    backgroundColor: '#6369F3',
+
                                     // justifyContent: 'center',
                                     // marginHorizontal: responsiveWidth(7),
-                                    padding: responsiveHeight(1.5),
+
                                     fontFamily: 'Poppins-Medium',
-                                    borderRadius: responsiveWidth(4),
+
                                     fontSize: responsiveFontSize(1.5),
-                                    bottom: responsiveHeight(4),
-                                    elevation: 4,
-                                    width:responsiveWidth(45)
+
+
                                 }}>
                                 Add More Vehicle
                             </Text>
@@ -488,38 +517,207 @@ export default function DriverApply({ navigation }) {
                                 position: "relative",
                                 right: responsiveHeight(1.5)
                             }}>
-                            I have read the Terms and Conditions{'\n'} guidelines{' '}
+                            I have read the Terms and Conditions{'\n'} guidelines.{' '}
                         </Text>
                     </View>
-                    <View style={{ marginTop: responsiveHeight(5), }}>
-                        <TouchableOpacity onPress={() => { navigation.navigate("loginD",{isTrue:isTrue}) }}>
-                            <Text
-                                style={{
-                                    color: '#fff',
-                                    textAlign: 'center',
-                                    backgroundColor: '#27AE60',
-                                    justifyContent: 'center',
-                                    marginHorizontal: responsiveWidth(7),
-                                    padding: responsiveHeight(1.8),
-                                    fontFamily: 'Poppins-Medium',
-                                    borderRadius: responsiveWidth(4),
-                                    fontSize: responsiveFontSize(2),
-                                    bottom: responsiveHeight(4),
-                                    elevation: 4
-                                }}>
-                                Apply Now
-                            </Text>
-                        </TouchableOpacity>
+                    <View style={{ marginTop: responsiveHeight(2), }}>
+                        <TouchableOpacity
+                            onPress={() => { navigation.navigate("drawer") }}
+                        >
+                            <View style={[sstyles.buttonText]}>
+                                <Text
+                                    style={{
+                                        fontFamily: "Poppins-Medium",
+                                        fontSize: responsiveFontSize(2),
+                                        color: '#fff',
+                                        textAlign: 'center',
 
+                                    }}
+                                >Apply Now</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <Text style={{
+                            fontFamily: "Poppins-Regular",
+                            fontSize: responsiveFontSize(1.7),
+                            color: "#757680",
+                            alignSelf: "center",
+                            marginTop: responsiveHeight(1),
+                            marginBottom: responsiveHeight(2)
+                        }}>Already registered? <Text style={{
+                            fontFamily: "Poppins-Regular",
+                            fontSize: responsiveFontSize(1.7),
+                            color: "#6369F3",
+                        }}
+                            onPress={() => { navigation.navigate('loginD') }}
+                        >Login</Text></Text>
+                        {/* dfghfrgthrehy */}
+
+                        <Modal isVisible={isModalVisible} style={styles.modalContainer}>
+                            <View style={styles.modalContent}>
+                                <Text style={styles.title}></Text>
+                                <Text style={styles.subtitle}>Vehicle Detail</Text>
+
+                                <View >
+                                    <View style={styles.Payview1}>
+                                        <Text
+                                            style={{
+                                                fontFamily: 'Poppins-Medium',
+                                                fontSize: responsiveFontSize(1.8),
+                                                color: '#0A0B1E',
+                                            }}>
+                                            Upload vehicle image
+                                        </Text>
+                                        <Image
+                                            style={{ height: responsiveHeight(4), width: responsiveWidth(9) }}
+                                            source={require('../../assets/Icons/cloud.png')}
+                                        />
+                                    </View>
+                                    <View style={styles.Payview}>
+                                        <View>
+                                            <Text style={{
+                                                fontFamily: 'Poppins-Medium',
+                                                fontSize: responsiveFontSize(1.8), color: '#0A0B1E',
+                                            }}>Vehicle Registration</Text>
+                                            <TextInput
+                                                style={{
+                                                    width: responsiveWidth(48),
+                                                    backgroundColor: '#F6F6FF',
+                                                    height: responsiveHeight(6),
+                                                }}
+                                                label="Expire Date"
+                                                mode="outlined"
+                                                outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8' }}
+                                                theme={{
+                                                    roundness: 12,
+                                                    color: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                                }}
+                                                placeholder="00-00-0000"
+                                                value={date2}
+
+
+                                            />
+                                        </View>
+                                        <TouchableOpacity onPress={showDatePicker2}>
+                                            <View>
+                                                <Image
+                                                    style={{
+                                                        height: responsiveHeight(5),
+                                                        width: responsiveWidth(5),
+
+                                                        right: responsiveWidth(18),
+                                                        top: responsiveHeight(2.1),
+                                                    }}
+                                                    source={require('../../assets/Icons/calender.png')}
+                                                    resizeMode="contain"
+                                                />
+                                                <DateTimePickerModal
+                                                    isVisible={isDatePickerVisible2}
+                                                    mode="date"
+                                                    onConfirm={handleConfirm2}
+                                                    onCancel={hideDatePicker}
+                                                />
+                                            </View>
+                                        </TouchableOpacity>
+                                        <Image
+                                            style={{ height: responsiveHeight(4), width: responsiveWidth(9) }}
+                                            source={require('../../assets/Icons/cloud.png')}
+                                        />
+                                    </View>
+
+                                    <View style={styles.textinputmainview}>
+                                        {renderLabel()}
+                                        <Dropdown
+                                            style={[styles.dropdown, isFocus && { borderColor: '#C8C8C8' }]}
+                                            placeholderStyle={styles.placeholderStyle}
+                                            selectedTextStyle={styles.selectedTextStyle}
+                                            inputSearchStyle={styles.inputSearchStyle}
+                                            iconStyle={styles.iconStyle}
+                                            data={data}
+                                            search
+                                            maxHeight={300}
+                                            labelField="label"
+                                            valueField="value"
+                                            placeholder={!isFocus ? 'Select Vehicle' : '...'}
+                                            searchPlaceholder="Search..."
+                                            value={value}
+                                            onFocus={() => setIsFocus(true)}
+                                            onBlur={() => setIsFocus(false)}
+                                            onChange={item => {
+                                                setValue(item.value);
+                                                setIsFocus(false);
+                                            }}
+                                        />
+                                        <TextInput
+                                            label="Vehicle year"
+                                            mode="outlined"
+                                            outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
+                                            theme={{
+                                                roundness: 10,
+
+                                                colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                            }}
+                                            style={styles.textinputstyle}
+                                        />
+
+
+                                        <TextInput
+                                            label="Plate number"
+                                            mode="outlined"
+                                            outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
+                                            theme={{
+                                                roundness: 10,
+
+                                                colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                            }}
+                                            style={styles.textinputstyle}
+                                        />
+
+                                        <TextInput
+                                            label="Chassis Number"
+                                            placeholder='Chassis Number'
+                                            placeholderTextColor={"#C8C8C8"}
+                                            mode="outlined"
+                                            outlineStyle={{ borderWidth: responsiveHeight(.2), borderColor: '#C8C8C8', backgroundColor: "#FFFFFF" }}
+                                            theme={{
+                                                roundness: 10,
+
+                                                colors: { primary: '#C8C8C8', underlineColor: '#C8C8C8' },
+                                            }}
+                                            style={styles.textinputstyle}
+                                        />
+                                    </View>
+                                </View>
+
+
+                                <View style={styles.buttonContainer}>
+                                    <TouchableOpacity onPress={toggleModal}>
+                                        <View style={styles.cancelButton}>
+                                            <Text style={styles.buttonText1}>Add</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                    {/* <TouchableOpacity  onPress={()=>{navigation.navigate("Register")}}>
+                                            <View style={styles.signUpButton}>
+                                                <Text style={[styles.buttonText1, { color: '#fff' }]}>
+                                                    Sign Up
+                                                </Text>
+                                            </View>
+                                        </TouchableOpacity> */}
+                                </View>
+                            </View>
+
+                        </Modal>
+
+
+                        {/* /////rt */}
                     </View>
                 </View>
-                
-            <Image
-            source={require("../../assets/Images/line.png")}
-            style={{width:responsiveWidth(2),height:"100%",alignSelf:"flex-end",position:"absolute",marginTop:responsiveHeight(2)}}
-            />
+
+                <Image
+                    source={require("../../assets/Images/line.png")}
+                    style={{ width: responsiveWidth(2), height: "100%", alignSelf: "flex-end", position: "absolute", marginTop: responsiveHeight(2) }}
+                />
             </ScrollView>
-           
+
         </View>
 
     );
@@ -541,7 +739,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
 
         borderRadius: responsiveWidth(4),
-        marginHorizontal:responsiveWidth(2)
+        marginHorizontal: responsiveWidth(2)
     },
 
     buttonText: {
@@ -671,5 +869,57 @@ const styles = StyleSheet.create({
     eyeimage: {
         height: responsiveHeight(9),
         width: responsiveWidth(8),
+    },
+    modalContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        height: responsiveHeight(100),
+        width: responsiveWidth(100),
+        borderRadius: responsiveWidth(5),
+    },
+    title: {
+        textAlign: 'center',
+        fontSize: responsiveFontSize(3.3),
+        fontFamily: 'Poppins-Medium',
+        color: '#0A0B1E',
+        marginTop: responsiveHeight(5),
+    },
+    subtitle: {
+        textAlign: 'center',
+        fontSize: responsiveFontSize(2.8),
+        fontFamily: 'Poppins-Medium',
+        color: '#0A0B1E',
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginHorizontal: responsiveWidth(5),
+        marginTop: responsiveHeight(5.5),
+    },
+    cancelButton: {
+        height: responsiveHeight(7),
+        width: responsiveWidth(35),
+        borderWidth: responsiveHeight(0.2),
+        borderColor: '#6369F3',
+        borderRadius: responsiveWidth(4),
+        textAlign: 'center',
+        alignSelf: 'center',
+    },
+    signUpButton: {
+        height: responsiveHeight(7),
+        width: responsiveWidth(35),
+        backgroundColor: '#27AE60',
+        borderRadius: responsiveWidth(4),
+        textAlign: 'center',
+    },
+    buttonText1: {
+        textAlign: 'center',
+        marginTop: responsiveHeight(1.7),
+        fontFamily: 'Poppins-Medium',
+        fontSize: responsiveFontSize(2),
     },
 });

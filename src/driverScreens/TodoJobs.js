@@ -68,8 +68,8 @@ const TodoJobs = ({ navigation }) => {
                 <View style={{ position: "absolute", marginLeft: responsiveWidth(10), }}>
                     <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#C8C8C8" }}>PickUp</Text>
                     <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E" }}>Westhiemer RD Santa Ana</Text>
-                    <Text style={{ marginTop: responsiveHeight(0.1), fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#C8C8C8", marginTop: responsiveHeight(0.5) }}>Drop Off</Text>
-                    <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E" }}>Preston Rd. Inglewood, Maine</Text>
+                    <Text style={{ marginTop: responsiveHeight(0.6), fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#C8C8C8", marginTop: responsiveHeight(0.5) }}>Drop Off</Text>
+                    <Text style={{ marginTop: responsiveHeight(0.3),fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E" }}>Preston Rd. Inglewood, Maine</Text>
                 </View>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: responsiveWidth(2), marginTop: responsiveHeight(1.8) }}>

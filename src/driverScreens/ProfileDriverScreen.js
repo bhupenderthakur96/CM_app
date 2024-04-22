@@ -8,18 +8,52 @@ import {
 } from 'react-native-responsive-dimensions';
 import sstyles from '../../sstyle';
 
-const ProfileDriverScreen = () => {
+const ProfileDriverScreen = ({navigation}) => {
   return (
     <SafeAreaView>
       <ScrollView>
         <View style={{ flex: 1, backgroundColor: "black", }}>
+        <View style={{ flexDirection: "row", }}>
+
+<Text
+  style={{
+    color: "white",
+    textAlign: "center",
+    width: '100%',
+    marginVertical: responsiveHeight(2),
+    fontSize: responsiveFontSize(2.2),
+    fontFamily: "Poppins-Medium",
+    // alignSelf:"center",
+    alignSelf: "center",
+    // marginLeft: responsiveWidth(-8.5),
+    // fontWeight:"bold"
+  }}>Profile</Text>
+<TouchableOpacity style={{ height: "100%", justifyContent: 'center', position: "absolute" }}
+  onPress={() => navigation.goBack()}
+
+>
+  <Image
+    style={{
+      height: responsiveHeight(5),
+      width: responsiveWidth(6),
+
+      marginLeft: responsiveWidth(2.5),
+
+    }}
+    source={require('../../assets/Icons/back.png')}
+    resizeMode="contain"
+
+  />
+</TouchableOpacity>
+
+</View>
           <Image
             source={require("../../assets/Images/line.png")}
-            style={{ width: responsiveWidth(2), height: "100%", position: "absolute", marginTop: responsiveHeight(2) }}
+            style={{ width: responsiveWidth(2), height: "100%", position: "absolute", marginTop: responsiveHeight(9) }}
           />
           <Image
             source={require("../../assets/Images/line.png")}
-            style={{ width: responsiveWidth(2), height: "100%", alignSelf: "flex-end", position: "absolute", marginTop: responsiveHeight(2) }}
+            style={{ width: responsiveWidth(2), height: "100%", alignSelf: "flex-end", position: "absolute", marginTop: responsiveHeight(9) }}
           />
           <View style={styles.container}>
             <Image
@@ -33,28 +67,30 @@ const ProfileDriverScreen = () => {
 
               }}
             />
+            <View style={{ height: responsiveHeight(0.1), width: responsiveWidth(5) }}>
+              <TouchableOpacity >
 
-            <TouchableOpacity >
+                <Image
+                  source={require('../../assets/Icons/camera2.png')}
+                  resizeMode="contain"
+                  style={{
+                    height: responsiveHeight(19),
+                    width: responsiveWidth(20),
+                    // height:122,
+                    // marginHorizontal:responsiveWidth(28),
 
-              <Image
-                source={require('../../assets/Icons/camera2.png')}
-                resizeMode="contain"
-                style={{
-                  // height:responsiveHeight(5),
-                  // width:responsiveWidth(10),
-                  // height:1,
-                  // marginHorizontal:responsiveWidth(28),
+                    position: "relative",
+                    left: responsiveWidth(52),
+                    bottom: responsiveHeight(15)
+                    // top:responsiveHeight(0.1),
+                    // borderRadius:responsiveWidth(3),
+                    // marginVertical:responsiveHeight(10)
+                    // backgroundColor:"red"
+                  }}
+                />
 
-                  position: "absolute",
-                  left: responsiveWidth(50),
-                  bottom: 0.1
-                  // top:responsiveHeight(0.1),
-                  // borderRadius:responsiveWidth(3),
-                  // marginVertical:responsiveHeight(10)
-                  // backgroundColor:"red"
-                }}
-              />
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
             <TextInput
               label="Name"
               mode="outlined"
@@ -65,7 +101,7 @@ const ProfileDriverScreen = () => {
               theme={{
                 roundness: 15,
                 colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
-            }}
+              }}
               // 
               // value={email}
               // onChangeText={(text) => setEmail(text)}
@@ -89,7 +125,7 @@ const ProfileDriverScreen = () => {
               theme={{
                 roundness: 15,
                 colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
-            }}
+              }}
               // 
               // value={email}
               // onChangeText={(text) => setEmail(text)}
@@ -113,7 +149,7 @@ const ProfileDriverScreen = () => {
               theme={{
                 roundness: 15,
                 colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
-            }}
+              }}
               // 
               // value={email}
               // onChangeText={(text) => setEmail(text)}
@@ -139,7 +175,7 @@ const ProfileDriverScreen = () => {
               theme={{
                 roundness: 15,
                 colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
-            }}
+              }}
               // value={email}
               // onChangeText={(text) => setEmail(text)}
 
@@ -153,16 +189,16 @@ const ProfileDriverScreen = () => {
               style={styles.lasttextinput}
             />
             <TouchableOpacity>
-            <View style={[sstyles.buttonText, { marginTop: responsiveHeight(7) }]}>
-              <Text
-                style={{
-                  fontFamily: "Poppins-Medium",
-                  fontSize: responsiveFontSize(2),
-                  color: '#fff',
-                  textAlign: 'center',
-                }}
-              >Save</Text>
-            </View>
+              <View style={[sstyles.buttonText, { marginTop: responsiveHeight(7) }]}>
+                <Text
+                  style={{
+                    fontFamily: "Poppins-Medium",
+                    fontSize: responsiveFontSize(2),
+                    color: '#fff',
+                    textAlign: 'center',
+                  }}
+                >Save</Text>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -183,11 +219,12 @@ const styles = StyleSheet.create({
     height: responsiveHeight(100)
   },
   email: {
-    marginTop: responsiveHeight(4),
+    marginTop: responsiveHeight(1),
     height: responsiveHeight(6.8),
     fontSize: responsiveFontSize(2),
     fontFamily: 'Regular',
-    marginHorizontal: responsiveWidth(5)
+    marginHorizontal: responsiveWidth(5),
+    backgroundColor:"#ffffff"
   },
   buttonText: {
     color: '#fff',

@@ -6,7 +6,8 @@ import {
   Image,
   TouchableOpacity,
   ScrollView, FlatList,
-  SafeAreaView
+  SafeAreaView,
+  Alert
 } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import {
@@ -20,14 +21,14 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import sstyles from '../../sstyle';
 
 const data = [
-  { id: '1', label: '2inch', value: '2inch' },
-  { id: '2', label: '3inch', value: '3inch' },
+  { id: '1', label: '2cubic', value: '2cubic' },
+  { id: '2', label: '3cubic', value: '3cubic' },
 
 ];
 
 const data1 = [
-  { id: '1', label: '20', value: '20', },
-  { id: '2', label: '32', value: '32', id: '2' },
+  { id: '1', label: '20kg', value: '20', },
+  { id: '2', label: '32kg', value: '32', },
 
 ];
 export default function MyJobScreen({ navigation }) {
@@ -109,6 +110,19 @@ export default function MyJobScreen({ navigation }) {
       <Text style={styles.wighttext2}>{item?.value1}</Text>
     </View>
   );
+//   const next = () => {
+//     // console.log(itemList[1].itemName,"itemList")
+    
+//     for (let i = 0; i < itemList.length; i++) {
+//         console.log(itemList[i].itemName, "ayush");
+//         if (itemList[i].itemName && itemList[i].value1 && itemList[i].value) {
+//             navigation.navigate('PickDrop')
+//         }else{
+//           Alert.alert("","please enter the above details")
+//         }
+//     }
+  
+// }
 
   return (
     <ScrollView horizontal={false} >
@@ -274,7 +288,7 @@ export default function MyJobScreen({ navigation }) {
             <TouchableOpacity
 
               title="Go to Details"
-              onPress={() => navigation.navigate('PickDrop')}
+              onPress={()=>{navigation.navigate('PickDrop')}}
               style={[sstyles.buttonText,{marginBottom: responsiveHeight(2),
                 marginRight: responsiveWidth(6),}]}
               >
@@ -382,12 +396,14 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2.5)
   },
   textinputstyle: {
-    width: responsiveWidth(85),
+    width: responsiveWidth(83),
     height: responsiveHeight(5.7),
     alignSelf: 'center',
     backgroundColor: '#F6F6FE',
     fontSize: responsiveFontSize(1.8),
-    marginTop: responsiveHeight(5),
+    marginTop: responsiveHeight(6
+    
+    ),
     fontFamily: "Poppins-Regular"
 
   },
@@ -428,7 +444,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(14),
     marginTop: responsiveHeight(5),
     position: "relative",
-    left: responsiveWidth(1.85),
+    left: responsiveWidth(1.4),
     // marginLeft:responsiveWidth(3),
     bottom: responsiveHeight(1.5),
 
@@ -540,7 +556,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#f8f8f8',
     left: responsiveWidth(2),
-    top: responsiveHeight(3),
+    top: responsiveHeight(3.5),
     zIndex: 999,
     paddingHorizontal: responsiveWidth(1.5),
     fontSize: 14,
@@ -549,7 +565,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#f8f8f8',
     left: responsiveWidth(38),
-    top: responsiveHeight(3),
+    top: responsiveHeight(3.5),
     zIndex: 99,
     paddingHorizontal: responsiveWidth(1.5),
     fontSize: 14,

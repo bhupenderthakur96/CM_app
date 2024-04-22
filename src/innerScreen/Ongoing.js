@@ -25,7 +25,7 @@ const Ongoing = ({navigation}) => {
                 .map((_, index) => `index-${index}`),
         [],
     );
-    const snapPoints = useMemo(() => ['15%', '85%',], []);
+    const snapPoints = useMemo(() => ['45%', '85%',], []);
 
     // callbacks
     const handleSheetChange = useCallback(index => {
@@ -197,7 +197,7 @@ const Ongoing = ({navigation}) => {
                         <Text style={styles.jobtext2}>30 minutes</Text>
                     </View>
                     <View
-                        style={{ marginTop: responsiveHeight(10), alignItems: "center" }}>
+                        style={{ marginTop: responsiveHeight(3), alignItems: "center" }}>
                         <TouchableOpacity
                             style={styles.button}
                             title="Go to Details"
@@ -294,8 +294,8 @@ const styles = StyleSheet.create({
         height: responsiveHeight(6)
     },
     button: {
-        height: responsiveHeight(7.5),
-        width: responsiveWidth(45),
+        height: responsiveHeight(7),
+        width: responsiveWidth(40),
         // backgroundColor: '#27AE60',
         marginBottom: responsiveHeight(2),
         borderRadius: responsiveWidth(5),

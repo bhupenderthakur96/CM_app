@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useMemo, useState } from 'react';
-import { TouchableWithoutFeedback,StyleSheet, View, Text, Button, ScrollView, Image, TouchableOpacity, Switch } from 'react-native';
+import { TouchableWithoutFeedback, StyleSheet, View, Text, Button, ScrollView, Image, TouchableOpacity, Switch, Platform, Alert } from 'react-native';
 import BottomSheet, { BottomSheetScrollView, } from '@gorhom/bottom-sheet';
 import {
   responsiveFontSize,
@@ -14,8 +14,8 @@ const PickDropScreen = ({ navigation }) => {
   const [termsChecked, setTermsChecked] = useState(false);
   const [termsChecked2, setTermsChecked2] = useState(false);
 
-  console.log(termsChecked,"termsChecked")
-  console.log(termsChecked2,"termsChecked2")
+  console.log(termsChecked, "termsChecked")
+  console.log(termsChecked2, "termsChecked2")
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   // hooks
@@ -53,238 +53,258 @@ const PickDropScreen = ({ navigation }) => {
     console.log(option, "ghjh")
     setSelectedOption(option === selectedOption ? null : option);
   };
+
+  const Handlenavigation =() =>{
+    {selectedOption == null &&
+   Alert.alert("", "Please select Man or Men Job")
+      }
+    {selectedOption&&
+    navigation.navigate('DeliveryType')
+    }
+  }
   return (
 
     <TouchableWithoutFeedback onPress={hideBottomSheet}>
-    <View style={styles.container}>
+      <View style={styles.container}>
 
-      <View style={{ flex: 1, backgroundColor: "black" }}>
-      <View style={{ flexDirection: "row",}}>
-                    
-                    <Text
-                        style={{
-                            color: "white",
-                            textAlign: "center",
-                            width:'100%',
-                            marginVertical:responsiveHeight(2),
-                            fontSize: responsiveFontSize(2.2),
-                            fontFamily: "Poppins-Medium",
-                            // alignSelf:"center",
-                            alignSelf:"center",
-                            // marginLeft: responsiveWidth(-8.5),
-                            // fontWeight:"bold"
-                        }}>Pick & Drop</Text>
-                        <TouchableOpacity style={{ height:"100%",justifyContent:'center',position:"absolute"}} 
-                    onPress={() => navigation.goBack()}
-                    
-                    >
-                        <Image
-                            style={{
-                                height: responsiveHeight(5),
-                                width: responsiveWidth(6),
-                                
-                                marginLeft: responsiveWidth(2.5),
-                              
-                            }}
-                            source={require('../../assets/Icons/back.png')}
-                            resizeMode="contain"
-                           
-                        />
-                    </TouchableOpacity>
+        <View style={{ flex: 1, backgroundColor: "black" }}>
+          <View style={{ flexDirection: "row", }}>
 
-                </View>
-        <View style={{
-          flex: 1,
-          backgroundColor: "white",
-          height: "100%",
-          // marginHorizontal:responsiveWidth(2),
-          borderRadius: responsiveWidth(4),
-          // marginHorizontal:responsiveWidth(2)
-        }}>
-          <Image
-            style={styles.imageview}
-            source={require('../../assets/Images/Map.png')}
-          />
-          <View style={styles.contentContainer1}>
-           <LogoScreen/>
+            <Text
+              style={{
+                color: "white",
+                textAlign: "center",
+                width: '100%',
+                marginVertical: responsiveHeight(2),
+                fontSize: responsiveFontSize(2.2),
+                fontFamily: "Poppins-Medium",
+                // alignSelf:"center",
+                alignSelf: "center",
+                // marginLeft: responsiveWidth(-8.5),
+                // fontWeight:"bold"
+              }}>Pick & Drop</Text>
+            <TouchableOpacity style={{ height: "100%", justifyContent: 'center', position: "absolute" }}
+              onPress={() => navigation.goBack()}
+
+            >
+              <Image
+                style={{
+                  height: responsiveHeight(5),
+                  width: responsiveWidth(6),
+
+                  marginLeft: responsiveWidth(2.5),
+
+                }}
+                source={require('../../assets/Icons/back.png')}
+                resizeMode="contain"
+
+              />
+            </TouchableOpacity>
+
+          </View>
+          <View style={{
+            flex: 1,
+            backgroundColor: "white",
+            height: "100%",
+            // marginHorizontal:responsiveWidth(2),
+            borderRadius: responsiveWidth(4),
+            // marginHorizontal:responsiveWidth(2)
+          }}>
+            <Image
+              style={styles.imageview}
+              source={require('../../assets/Images/Map.png')}
+            />
+            <View style={styles.contentContainer1}>
+              <LogoScreen />
+            </View>
           </View>
         </View>
-      </View>
 
-      <BottomSheet
-        ref={sheetRef}
-        index={0}
-        snapPoints={snapPoints}
+        <BottomSheet
+          ref={sheetRef}
+          index={0}
+          snapPoints={snapPoints}
 
-        onChange={handleSheetChange}>
-        <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
-          <View
-            style={styles.textinputmainview}>
-            <View style={{
-              flexDirection: "row",
-              marginHorizontal: responsiveWidth(4),
-              marginTop: responsiveHeight(2),
-          
-            }}>
-              <Switch
-                trackColor={{ false: '#767577', true: '#27AE60' }}
-                thumbColor={isEnabled ? '#27AE60' : '#f4f3f4'}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-              />
-              <Text
-                style={{ 
-                  fontFamily: "Poppins-Regular",
-                   color: "#000000", 
-                   fontSize: responsiveFontSize(1.9),
-                    marginTop:responsiveHeight(0.5)
-                   }}
-              >Use Current Location</Text>
-            </View>
-            <TextInput
-              label="Pickup"
-              mode="outlined"
-              outlineStyle={{
-                borderWidth: responsiveWidth(0.2),
-                borderColor: "#C8C8C8"
-              }}
-              placeholder="Enter Pick up Location"
-              theme={{
-                roundness: 15,
-                colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
-            }}
-              style={styles.textinputstyle}
-            />
-            <TextInput
-              label="Drop"
-              mode="outlined"
-              outlineStyle={{
-                borderWidth: responsiveWidth(0.2),
-                borderColor: "#C8C8C8"
-              }}
-              placeholder="Enter Drop Location"
-              theme={{
-                roundness: 15,
-                colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
-            }}
-              style={styles.textinputstyle}
-            />
-            <View style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              marginTop: responsiveHeight(4),
-              marginHorizontal: responsiveWidth(2),
-              backgroundColor: '#FFFFFF',
-            }}>
+          onChange={handleSheetChange}>
+          <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
+            <View
+              style={styles.textinputmainview}>
               <View style={{
-                width: responsiveWidth(40),
-                height: responsiveHeight(6.5),
-                alignSelf: 'center',
-                borderWidth: responsiveWidth(.2),
-                borderColor: "#C8C8C8",
-                borderRadius: responsiveWidth(3),
+                flexDirection: "row",
+                marginHorizontal: responsiveWidth(4),
+                marginTop: responsiveHeight(2),
 
               }}>
 
+                <Switch
+
+                  style={Platform.OS === 'ios' ? { transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }] } : { marginTop: responsiveHeight(0.5) }}
+                  trackColor={{ false: '#767577', true: '#27AE60' }}
+                  thumbColor={isEnabled ? '#27AE60' : '#f4f3f4'}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch}
+                  value={isEnabled}
+                />
                 <Text
                   style={{
-                    position: 'absolute',
-                    bottom: responsiveHeight(5.4),
-                    backgroundColor: '#FFFFFF',
-                    marginHorizontal: responsiveWidth(3),
-                    zIndex: 1,
-                  }}>
-                  Man Job
-                </Text>
+                    fontFamily: "Poppins-Regular",
+                    color: "#000000",
+                    fontSize: responsiveFontSize(1.9),
+                    marginTop: responsiveHeight(1)
+                  }}
+                >Use Current Location</Text>
+              </View>
+              <TextInput
+                label="Pickup"
+                mode="outlined"
+                outlineStyle={{
+                  borderWidth: responsiveWidth(0.2),
+                  borderColor: "#C8C8C8"
+                }}
+                placeholder="Enter Pick up Location"
+                placeholderTextColor={"#84858F"}
+                theme={{
+                  roundness: 15,
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+                }}
+                style={styles.textinputstyle}
+              />
+              <TextInput
+                label="Drop"
+                mode="outlined"
+                outlineStyle={{
+                  borderWidth: responsiveWidth(0.2),
+                  borderColor: "#C8C8C8"
+                }}
+                placeholder="Enter Drop Location"
+                placeholderTextColor={"#84858F"}
+                theme={{
+                  roundness: 15,
+                  colors: {
+                     primary: '#C8C8C8',
+                     placeholder: '#C8C8C8',
+                     text: '#C8C8C8',
+                     underlineColor: '#C8C8C8' },
+                }}
+                style={styles.textinputstyle}
+              />
+              <View style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                marginTop: responsiveHeight(4),
+                marginHorizontal: responsiveWidth(2),
+                backgroundColor: '#FFFFFF',
+              }}>
                 <View style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: responsiveHeight(1.3),
-                  marginLeft: responsiveHeight(2)
+                  width: responsiveWidth(40),
+                  height: responsiveHeight(6.5),
+                  alignSelf: 'center',
+                  borderWidth: responsiveWidth(.2),
+                  borderColor: "#C8C8C8",
+                  borderRadius: responsiveWidth(3),
+
                 }}>
 
-                  <Image
+                  <Text
                     style={{
-                      height: responsiveHeight(3),
-                      width: responsiveWidth(2.5),
-
-                    }}
-                    source={require('../../assets/Icons/men.png')}
-                  />
-                <TouchableOpacity onPress={() => handleOptionSelect("men")}>
-                  <Image
-                    style={{
-                      height: selectedOption === "men" ? responsiveHeight(2.7) : responsiveHeight(2.7),
-                      width: selectedOption === "men" ? responsiveWidth(15) : responsiveWidth(14),
-                      marginTop: selectedOption === "men" ? responsiveHeight(0.5) : responsiveHeight(0.5),
-                      marginLeft: responsiveWidth(2)
-                    }}
-                    source={selectedOption === "men" ? require('../../assets/Icons/blueTick.png') : require('../../assets/Icons/whiteC.png')}
-                    resizeMode="contain"
-                  />
-                </TouchableOpacity>
-
-                </View>
-              </View>
-              <View style={{
-                width: responsiveWidth(40),
-                height: responsiveHeight(6.5), alignSelf: 'center', borderWidth: responsiveWidth(.2), borderColor: "#C8C8C8", borderRadius: responsiveWidth(3)
-              }}>
-
-                <Text
-                  style={{
-                    position: 'absolute',
-                    bottom: responsiveHeight(5.4),
-                    backgroundColor: '#FFFFFF',
-                    marginHorizontal: responsiveWidth(3),
-
-                    zIndex: 1,
+                      position: 'absolute',
+                      bottom: responsiveHeight(5.4),
+                      backgroundColor: '#FFFFFF',
+                      marginHorizontal: responsiveWidth(3),
+                      zIndex: 1,
+                    }}>
+                    Man Job
+                  </Text>
+                  <View style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginTop: responsiveHeight(1.3),
+                    marginLeft: responsiveHeight(2)
                   }}>
-                  Man Job
-                </Text>
-                <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: responsiveHeight(1.3), marginLeft: responsiveHeight(2) }}>
 
-                  <Image
+                    <Image
+                      style={{
+                        height: responsiveHeight(3),
+                        width: responsiveWidth(2.5),
+
+                      }}
+                      source={require('../../assets/Icons/men.png')}
+                    />
+                    <TouchableOpacity onPress={() => handleOptionSelect("men")}>
+                      <Image
+                        style={{
+                          height: selectedOption === "men" ? responsiveHeight(2.7) : responsiveHeight(2.7),
+                          width: selectedOption === "men" ? responsiveWidth(15) : responsiveWidth(14),
+                          marginTop: selectedOption === "men" ? responsiveHeight(0.5) : responsiveHeight(0.5),
+                          marginLeft: responsiveWidth(2)
+                        }}
+                        source={selectedOption === "men" ? require('../../assets/Icons/blueTick.png') : require('../../assets/Icons/whiteC.png')}
+                        resizeMode="contain"
+                      />
+                    </TouchableOpacity>
+
+                  </View>
+                </View>
+                <View style={{
+                  width: responsiveWidth(40),
+                  height: responsiveHeight(6.5), alignSelf: 'center', borderWidth: responsiveWidth(.2), borderColor: "#C8C8C8", borderRadius: responsiveWidth(3)
+                }}>
+
+                  <Text
                     style={{
-                      height: responsiveHeight(3.5),
-                      width: responsiveWidth(6.5),
+                      position: 'absolute',
+                      bottom: responsiveHeight(5.4),
+                      backgroundColor: '#FFFFFF',
+                      marginHorizontal: responsiveWidth(3),
 
-                    }}
-                    source={require('../../assets/Icons/men3.png')}
-                  />
+                      zIndex: 1,
+                    }}>
+                    Men Job
+                  </Text>
+                  <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: responsiveHeight(1.3), marginLeft: responsiveHeight(2) }}>
+
+                    <Image
+                      style={{
+                        height: responsiveHeight(3.5),
+                        width: responsiveWidth(6.5),
+
+                      }}
+                      source={require('../../assets/Icons/men3.png')}
+                    />
                     <TouchableOpacity onPress={() => handleOptionSelect("Next")}>
-                  <Image
-                    style={{
-                      height: selectedOption === "Next" ? responsiveHeight(2.7) : responsiveHeight(2.7),
-                      width: selectedOption === "Next" ? responsiveWidth(14) : responsiveWidth(14),
-                      marginTop: selectedOption === "Next" ? responsiveHeight(0.5) : responsiveHeight(0.5),
-                      marginLeft: responsiveWidth(2)
-                    }}
-                    source={selectedOption === "Next" ? require('../../assets/Icons/blueTick.png') : require('../../assets/Icons/whiteC.png')}
-                    resizeMode="contain"
-                  />
-                </TouchableOpacity>
+                      <Image
+                        style={{
+                          height: selectedOption === "Next" ? responsiveHeight(2.7) : responsiveHeight(2.7),
+                          width: selectedOption === "Next" ? responsiveWidth(14) : responsiveWidth(14),
+                          marginTop: selectedOption === "Next" ? responsiveHeight(0.5) : responsiveHeight(0.5),
+                          marginLeft: responsiveWidth(2)
+                        }}
+                        source={selectedOption === "Next" ? require('../../assets/Icons/blueTick.png') : require('../../assets/Icons/whiteC.png')}
+                        resizeMode="contain"
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
+              <View
+                style={{}}>
+                <TouchableOpacity
+                  style={[sstyles.buttonText, { marginTop: responsiveHeight(5) }]}
+                  title="Go to Details"
+                  onPress={Handlenavigation}
+                >
+                  <Text style={{
+                    color: '#fff',
+                    textAlign: 'center',
+                    fontSize: responsiveFontSize(2),
+                    fontFamily: 'Poppins-Medium',
+                  }}>Next</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View
-              style={{ }}>
-              <TouchableOpacity
-                style={[sstyles.buttonText,{marginTop:responsiveHeight(5)}]}
-                title="Go to Details"
-                onPress={() => navigation.navigate('DeliveryType')}
-              >
-                <Text style={{ color: '#fff',
-    textAlign: 'center',
-    fontSize: responsiveFontSize(2),
-    fontFamily: 'Poppins-Medium',}}>Next</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </BottomSheetScrollView>
-      </BottomSheet>
-    </View>
+          </BottomSheetScrollView>
+        </BottomSheet>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
@@ -298,6 +318,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+
   },
   contentContainer: {
     backgroundColor: 'white',

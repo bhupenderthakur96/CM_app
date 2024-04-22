@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, ScrollView, } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, } from 'react-native'
 import { TextInput } from 'react-native-paper';
 import React, { useState } from 'react'
 import {
@@ -8,7 +8,7 @@ import {
 } from 'react-native-responsive-dimensions';
 import { Dropdown } from 'react-native-element-dropdown';
 import sstyles from '../../sstyle';
-
+import Share from 'react-native-share';
 
 const data = [
     { label: 'Item 1', value: '1' },
@@ -23,75 +23,94 @@ const SupportScreen = () => {
         if (value || isFocus) {
             return (
                 <Text style={[styles.label, isFocus && { color: 'blue' }]}>
-                   Subject
+                    Subject
                 </Text>
             );
         }
         return null;
     };
 
+    const share = () => {
+
+        const options = {
+            message:"simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'"
+        }
+
+
+        Share.open(options)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                err && console.log(err);
+            });
+    }
+
     return (
         <View style={{ flex: 1, backgroundColor: "black" }}>
             <ScrollView>
-            <View style={styles.container}>
-                <Image
-                    style={styles.image}
-                    source={require('../../assets/Images/char2.png')}
-                    resizeMode="contain"
-                />
-                <Text style={{ 
-                    textAlign: "center", 
-                    fontSize:responsiveFontSize(1.5), 
-                    fontFamily:"Poppins-Regular",
-                    color:"#0A0B1E",
-                    backgroundColor:"#FFFFFF"
-                    
-                     }}>Please feel free to talk to us if{"\n"}you have any questions. We will{"\n"}endeavour to answer within 24 hours</Text>
-                <TextInput
-                label="Subject"
-                mode="outlined"
-                placeholder='Real-time delivery tracking'
-                outlineStyle={{ 
-                    borderWidth:responsiveWidth(0.2),
-                    borderColor:"#C8C8C8"
-                   }}
-                   theme={{
-                    roundness: 15,
-                    colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
-                }}
-                style={{marginHorizontal:responsiveWidth(5),marginTop:responsiveHeight(2),backgroundColor:"#FFFFFF"}}
-                // style={styles.email}
-              />
-                <TextInput
-                    mode="outlined"
-                    multiline
-                    numberOfLines={6}
-                    placeholder="Enter Description"
-                    placeholderTextColor={"#84858F"}
-                    outlineStyle={{ 
-                        borderWidth:responsiveWidth(0.2),
-                        borderColor:"#C8C8C8"
-                       }}
+                <View style={styles.container}>
+                    <Image
+                        style={styles.image}
+                        source={require('../../assets/Images/char2.png')}
+                        resizeMode="contain"
+                    />
+                    <Text style={{
+                        textAlign: "center",
+                        fontSize: responsiveFontSize(1.5),
+                        fontFamily: "Poppins-Regular",
+                        color: "#6C6D78",
+                        backgroundColor: "#FFFFFF"
 
-                       theme={{
-                        roundness: 15,
-                        colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
-                    }}
-                    style={styles.lasttextinput}
-                />
-                <View  style={[sstyles.buttonText,{marginTop:responsiveHeight(5)}]}>
+                    }}>Please feel free to talk to us if{"\n"}you have any questions. We will{"\n"}endeavour to answer within 24 hours</Text>
+                    <TextInput
+                        label="Subject"
+                        mode="outlined"
+                        placeholder='Real-time delivery tracking'
+                        outlineStyle={{
+                            borderWidth: responsiveWidth(0.2),
+                            borderColor: "#C8C8C8"
+                        }}
+                        theme={{
+                            roundness: 15,
+                            colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+                        }}
+                        style={{ marginHorizontal: responsiveWidth(5), marginTop: responsiveHeight(2), backgroundColor: "#FFFFFF" }}
+                    // style={styles.email}
+                    />
+                    <TextInput
+                        mode="outlined"
+                        multiline
+                        numberOfLines={6}
+                        placeholder="Enter Description"
+                        placeholderTextColor={"#84858F"}
+                        outlineStyle={{
+                            borderWidth: responsiveWidth(0.2),
+                            borderColor: "#C8C8C8"
+                        }}
 
-               
-                <Text  
-                style={{
-                    fontFamily: "Poppins-Medium",
-                    fontSize: responsiveFontSize(2),
-                    color: '#fff',
-                    textAlign: 'center',
-                }}
-                >Share</Text>
+                        theme={{
+                            roundness: 15,
+                            colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+                        }}
+                        style={styles.lasttextinput}
+                    />
+                    <View style={[sstyles.buttonText, { marginTop: responsiveHeight(5) }]}>
+
+                        <TouchableOpacity 
+                        onPress={share}
+                        >
+                        <Text
+                            style={{
+                                fontFamily: "Poppins-Medium",
+                                fontSize: responsiveFontSize(2),
+                                color: '#fff',
+                                textAlign: 'center',
+                            }}
+                        >Submit</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
             </ScrollView>
         </View>
     )
@@ -104,15 +123,16 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "white",
         borderRadius: responsiveWidth(5),
-        height:responsiveHeight(100)
+        height: responsiveHeight(100)
     },
     image: {
-        height: "40%",
+        height: "28%",
         width: "90%",
         // backgroundColor:"red",
-        marginTop: 10,
-        marginHorizontal: 20,
-        marginVertical: 1
+        marginTop: responsiveHeight(10),
+        // marginHorizontal:responsiveWidth(1),
+        // marginVertical: 1
+        alignSelf: "center"
     },
     buttonText: {
         color: '#fff',
@@ -123,9 +143,9 @@ const styles = StyleSheet.create({
         padding: responsiveHeight(2),
         marginTop: responsiveHeight(7),
         borderRadius: responsiveWidth(4),
-        fontSize:responsiveFontSize(2),
-        fontFamily:"Poppins-Regular",
-        elevation:4
+        fontSize: responsiveFontSize(2),
+        fontFamily: "Poppins-Regular",
+        elevation: 4
     },
     lasttextinput: {
         width: responsiveWidth(91),
@@ -142,8 +162,8 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderRadius: 8,
         paddingHorizontal: 8,
-        marginHorizontal:20,
-        marginTop:20
+        marginHorizontal: 20,
+        marginTop: 20
 
     },
     icon: {

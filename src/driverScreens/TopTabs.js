@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,Image } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import CompletedJobScreen from './CompletedJobScreen';
 
@@ -8,22 +8,24 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 
-import JobsDoneDriver from './JobsDoneDriver';
-import OngoingJobDriver from './OngoingJobDriver';
+import MyEarning from './MyEarning';
+import WeeklyScreen from './WeeklyScreen';
+import MonthlyScreen from './MonthlyScreen';
+import YearlyScreen from './YearlyScreen';
 
 const Tab = createMaterialTopTabNavigator();
 
 const CustomTabBar = ({ state, descriptors, navigation }) => {
   return (
-    <View style={{ flexDirection: 'row', borderRadius: responsiveWidth(2), marginHorizontal: responsiveWidth(10) }}>
+    <View style={{ flexDirection: 'row',  borderRadius:responsiveWidth(2),marginHorizontal:responsiveWidth(4) }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
-              ? options.title
-              : route.name;
+            ? options.title
+            : route.name;
 
         const isFocused = state.index === index;
 
@@ -70,35 +72,32 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
   );
 };
 
-const MyJobsDriver = () => {
+const TopTabs = () => {
   return (
-    <View style={{ 
-      flex: 1, 
-      backgroundColor: "black", 
-      
-      }}>
-      <Image
+    <View style={{ flex: 1, backgroundColor: "black" }}>
+         <Image
         source={require("../../assets/Images/line.png")}
         style={{ width: responsiveWidth(2), height: "100%", position: "absolute", marginTop: responsiveHeight(2) }}
       />
       <Image
         source={require("../../assets/Images/line.png")}
-        style={{ width: responsiveWidth(2), height: "100%", alignSelf: "flex-end", position: "absolute", 
-        marginTop: responsiveHeight(2) }}
+        style={{ width: responsiveWidth(2), height: "100%", alignSelf: "flex-end", position: "absolute", marginTop: responsiveHeight(2) }}
       />
-
       <View style={styles.container}>
-        <Tab.Navigator tabBar={props => <CustomTabBar {...props} />}>
-          <Tab.Screen name="JOBS DONE" component={JobsDoneDriver} />
-          <Tab.Screen name="ONGOING JOB" component={OngoingJobDriver} />
-        </Tab.Navigator>
-      </View>
      
+        <Tab.Navigator tabBar={props => <CustomTabBar {...props} />}>
+          <Tab.Screen name="Daily" component={MyEarning} />
+          <Tab.Screen name="Weekly" component={WeeklyScreen} />
+          <Tab.Screen name="Monthly" component={MonthlyScreen} />
+          <Tab.Screen name="Yearly" component={YearlyScreen} />
+        </Tab.Navigator>
+        
+      </View>
     </View>
   );
 };
 
-export default MyJobsDriver;
+export default TopTabs;
 
 const styles = StyleSheet.create({
   container: {
@@ -106,20 +105,19 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: responsiveWidth(5),
     marginHorizontal: responsiveWidth(2),
-
   },
   tabItem: {
     flex: 1,
     // alignItems: 'center',
-
+    
     alignItems: 'center',
     justifyContent: 'center', // Added to vertically center the text
-    paddingVertical: responsiveHeight(1.6), // Changed to paddingVertical for equal spacing
-    paddingHorizontal: responsiveWidth(3), // Added paddingHorizontal for horizontal spacing
-    borderRadius: responsiveWidth(3),
-    marginHorizontal: responsiveWidth(1.5),
-    borderWidth: responsiveWidth(0.2),
-    borderColor: "#C8C8C8",
-    marginTop: responsiveHeight(2.5)
+    paddingVertical:responsiveHeight(1.6), // Changed to paddingVertical for equal spacing
+    paddingHorizontal:responsiveWidth(3), // Added paddingHorizontal for horizontal spacing
+    borderRadius:responsiveWidth(3),
+    marginHorizontal:responsiveWidth(1.5),
+    borderWidth:responsiveWidth(0.2),
+    borderColor:"#C8C8C8",
+    marginTop:responsiveHeight(2.5)
   },
 });

@@ -16,10 +16,13 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
+import { useDispatch, useSelector } from "react-redux"
+import { setColor } from '../../redux/colorSlice'
 
-export default function LoginDriver({ navigation, route},) {
-  const { isTrue } = route.params;
-  console.log(isTrue,"data binding")
+
+export default function LoginDriver({ navigation },) {
+  const dispatch = useDispatch()
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -34,11 +37,11 @@ export default function LoginDriver({ navigation, route},) {
       <KeyboardAwareScrollView>
         <View style={styles.container}>
           <Image
-          style={{width:responsiveWidth(2),height:responsiveHeight(100),marginTop:responsiveHeight(21.7)}}
-          source={require("../../assets/Images/line.png")}
+            style={{ width: responsiveWidth(2), height: responsiveHeight(100), marginTop: responsiveHeight(21.7) }}
+            source={require("../../assets/Images/line.png")}
           />
           <View style={styles.innerContainer}>
-            
+
             <View style={styles.imageContainer}>
               <Image
                 style={styles.image}
@@ -51,7 +54,7 @@ export default function LoginDriver({ navigation, route},) {
                 resizeMode="contain"
               />
             </View>
-          
+
             <View style={styles.logo}>
               <Image
                 style={styles.truckimage}
@@ -68,13 +71,13 @@ export default function LoginDriver({ navigation, route},) {
               <TextInput
                 label="Enter Email"
                 mode="outlined"
-                outlineStyle={{ 
-                    borderWidth:responsiveWidth(0.2),
-                    borderColor:"#C8C8C8"
-                   }}
-                   theme={{
-                    roundness: 15,
-                    colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+                outlineStyle={{
+                  borderWidth: responsiveWidth(0.2),
+                  borderColor: "#C8C8C8"
+                }}
+                theme={{
+                  roundness: 15,
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
                 }}
                 value={email}
                 onChangeText={(text) => setEmail(text)}
@@ -87,13 +90,13 @@ export default function LoginDriver({ navigation, route},) {
               <TextInput
                 label="Enter password"
                 mode="outlined"
-                outlineStyle={{ 
-                    borderWidth:responsiveWidth(0.2),
-                    borderColor:"#C8C8C8"
-                   }}
-                   theme={{
-                    roundness: 15,
-                    colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
+                outlineStyle={{
+                  borderWidth: responsiveWidth(0.2),
+                  borderColor: "#C8C8C8"
+                }}
+                theme={{
+                  roundness: 15,
+                  colors: { primary: '#C8C8C8', placeholder: '#C8C8C8', text: '#C8C8C8', underlineColor: '#C8C8C8' },
                 }}
                 value={password}
                 onChangeText={(text) => setPassword(text)}
@@ -120,12 +123,13 @@ export default function LoginDriver({ navigation, route},) {
 
             <Text style={styles.forgotText}>Forgot password?</Text>
 
-            <TouchableOpacity style={styles.touch} 
+            <TouchableOpacity style={styles.touch}
 
-onPress={() => {
-  isTrue== true ? navigation.navigate("drawer") : navigation.navigate("Home")
-}}
-            
+              onPress={() => {
+                navigation.navigate("drawer")
+                dispatch(setColor())
+              }}
+
             >
               {isLoading ? (
                 <ActivityIndicator size="small" color="#ffffff" style={styles.activityIndicator} />
@@ -133,22 +137,24 @@ onPress={() => {
                 <Text style={styles.loginText}>Login</Text>
               )}
             </TouchableOpacity>
-           
-           
-              <TouchableOpacity style={styles.touch2}>
-                <Text style={styles.touchtext}>Continue Via Mobile Number</Text>
-              </TouchableOpacity>
-            
+
+
+            <TouchableOpacity style={styles.touch2}>
+              <Text style={styles.touchtext}>Continue Via Mobile Number</Text>
+            </TouchableOpacity>
+
             <View style={styles.lastview}>
               <Text style={styles.not}>Not yet signed up? </Text>
               <TouchableOpacity>
-                <Text style={styles.up}>Sign up</Text>
+                <Text style={styles.up}
+                  onPress={() => { navigation.navigate("driverApply") }}
+                >Sign up</Text>
               </TouchableOpacity>
             </View>
           </View>
           <Image
-          style={{width:responsiveWidth(2),height:responsiveHeight(100),marginTop:responsiveHeight(21.7)}}
-          source={require("../../assets/Images/line.png")}
+            style={{ width: responsiveWidth(2), height: responsiveHeight(100), marginTop: responsiveHeight(21.7) }}
+            source={require("../../assets/Images/line.png")}
           />
         </View>
       </KeyboardAwareScrollView>
@@ -160,15 +166,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0A0B1E',
-    flexDirection:"row",
-    justifyContent:"center"
+    flexDirection: "row",
+    justifyContent: "center"
   },
   innerContainer: {
     backgroundColor: '#FFFFFF',
     marginTop: responsiveHeight(21),
     borderTopLeftRadius: responsiveWidth(8),
     borderTopRightRadius: responsiveWidth(8),
-    width:"95%"
+    width: "95%"
   },
   imageContainer: {
     flexDirection: 'row',
@@ -198,7 +204,7 @@ const styles = StyleSheet.create({
     color: '#0A0B1E',
     textAlign: 'center',
     fontSize: responsiveFontSize(3.1),
-    fontFamily: 'poppins-Black',
+    fontFamily: 'poppins-Medium',
   },
   emailContainer: {
     alignSelf: 'center',
@@ -209,6 +215,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(6.8),
     fontSize: responsiveFontSize(2),
     fontFamily: 'Regular',
+    backgroundColor:"#FFFFFF"
   },
   passwordContainer: {
     alignSelf: 'center',
@@ -219,6 +226,7 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(3),
     fontSize: responsiveFontSize(2),
     fontFamily: 'Regular',
+    backgroundColor:"#FFFFFF"
   },
   eyeContainer: {
     position: 'absolute',
@@ -249,7 +257,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     elevation: 4,
     justifyContent: 'center',
-    
+
   },
   loginText: {
     color: '#fff',
@@ -268,7 +276,7 @@ const styles = StyleSheet.create({
     borderWidth: responsiveHeight(0.2),
     borderColor: 'blue',
     elevation: 4,
-   
+
   },
   touchtext: {
     color: '#6369F3',
@@ -281,7 +289,7 @@ const styles = StyleSheet.create({
   lastview: {
     flexDirection: 'row',
     alignSelf: 'center',
-  marginTop:responsiveHeight(10)
+    marginTop: responsiveHeight(10)
   },
   not: {
     color: '#757680',

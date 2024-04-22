@@ -28,6 +28,10 @@ import CompleteJobDes from '../driverScreens/CompleteJobDes';
 import TodoJobs from '../driverScreens/TodoJobs';
 import LoginDriver from '../driverScreens/LoginDriver';
 import HomeScreen from '../innerScreen/HomeScreen';
+import ChangePasswordUser from '../outerScreen/ChangePasswordUser';
+import ChangePasswordDriver from '../driverScreens/ChangePasswordDriver';
+import ProfileScreen from '../innerScreen/ProfileScreen';
+import ProfileDriverScreen from '../driverScreens/ProfileDriverScreen';
 
 const RootScreen = () => {
     const Stack = createNativeStackNavigator();
@@ -155,6 +159,26 @@ const RootScreen = () => {
            <Stack.Screen
           name="home" 
           component={HomeScreen} 
+          options={{headerShown:false}}
+          />
+           <Stack.Screen
+          name="change" 
+          component={ChangePasswordUser} 
+          options={{headerShown:false}}
+          />
+           <Stack.Screen
+          name="changeP" 
+          component={ChangePasswordDriver} 
+          options={{headerShown:false}}
+          />
+            <Stack.Screen
+          name="profile" 
+          component={ProfileScreen} 
+          options={{headerShown:false}}
+          />
+          <Stack.Screen
+          name="Profile" 
+          component={ProfileDriverScreen} 
           options={{headerShown:false}}
           />
         {/* <Stack.Screen name="Profile" component={RegisterScreen} /> */}

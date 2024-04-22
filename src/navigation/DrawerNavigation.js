@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Button, View,Image,Text, TouchableOpacity } from 'react-native';
+import { Button, View,Image,Text, TouchableOpacity,Pressable } from 'react-native';
 import { createDrawerNavigator,DrawerContentScrollView, DrawerItem,DrawerItemList } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import BottomNavigation from './BottomNavigation';
@@ -29,7 +29,11 @@ import { Rating } from "react-native-ratings";
 import HomeScreen from '../innerScreen/HomeScreen';
 import MyJobScreen from '../innerScreen/MyJobsScreen';
 
-
+import {useDispatch, useSelector} from "react-redux"
+import {setColor} from '../../redux/colorSlice'
+import {resetColor,drawerColor,customerColor1} from '../../redux/colorSlice'
+import TopTabs from '../driverScreens/TopTabs';
+import ProfileScreen from '../innerScreen/ProfileScreen';
 
 {/* <DrawerItemList
 label="Custom Button"
@@ -40,6 +44,11 @@ onPress={() => alert('Custom Button pressed')}
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigation({navigation}) {
+  const color = useSelector((state) => state.color.value);
+  const dc = useSelector((state) => state.color.value1);
+  const cc = useSelector((state) => state.color.value2);
+  console.log(cc,"ayush")
+  const dispatch = useDispatch()
   const [driver,setDriver] = useState(false)
   console.log(driver,"driver")
   return (
@@ -55,7 +64,7 @@ export default function DrawerNavigation({navigation}) {
             
           </View>
           <Text style={{textAlign:"center",fontFamily:"Poppins-Medium",fontSize:responsiveFontSize(2.2),color:"#000000",marginVertical:responsiveHeight(2)}}>Ernest Smith</Text>
-          {driver == true && 
+          {color == true && 
           <Rating
             // type='custom'
             //   ratingImage={WATER_IMAGE}
@@ -73,7 +82,10 @@ export default function DrawerNavigation({navigation}) {
             }}
           />
     }
-        {driver == true && 
+       
+       <TouchableOpacity 
+       onPress={()=>{color == true?navigation.navigate("Profile"):navigation.navigate("profile")}}
+       >
         <Text style={{
           textAlign:"center",
           borderWidth:responsiveWidth(0.2),
@@ -84,34 +96,50 @@ export default function DrawerNavigation({navigation}) {
           color:"#0A0B1E",
           borderColor:"#C8C8C8"
         }}>Edit Profile</Text>
-        }
+        </TouchableOpacity>
           <DrawerItemList {...props} />
-          {driver == false && 
-          <DrawerItem 
-          style={{
-            backgroundColor:"#6369F3",
-            borderRadius:responsiveWidth(3.5),
-            color:"white",
-            marginHorizontal:responsiveHeight(6),
-            marginTop:responsiveHeight(30),
-            width:180
+          
+          {
+  cc == true ? (
+    
+    <Text></Text>
+  ) : (
+    dc === true && (
+      <DrawerItem 
+        style={{
+          backgroundColor: "#6369F3",
+          borderRadius: responsiveWidth(3.5),
+          color: "white",
+          marginHorizontal: responsiveHeight(6),
+          marginTop:dc === true?responsiveHeight(30):responsiveHeight(1),
+          width: 180
+        }} 
+        label="Driver Mode"  
+        labelStyle={{ 
+          color: "white",
+          textAlign: "center",
+          fontFamily: "Poppins-Medium",
+          fontSize: responsiveFontSize(1.5),
+          marginLeft: responsiveWidth(8)
+        }}  
+        onPress={() => {
+          setDriver(true);
+          dispatch(setColor());
+        }}
+      />
+    )
+  )
+}
 
-          }} label="Driver Mode"  labelStyle={{ 
-            color: "white",
-            textAlign:"center",
-            fontFamily:"Poppins-Medium",
-            fontSize:responsiveFontSize(1.5),
-            marginLeft:responsiveWidth(8)
-           }}  onPress={() =>setDriver(true)}/>
-          }
-          {driver == true && 
+          {color == true && 
           <DrawerItem 
           style={{
             backgroundColor:"#6369F3",
             borderRadius:responsiveWidth(3.5),
             color:"white",
             marginHorizontal:responsiveHeight(6),
-            marginTop:responsiveHeight(30),
+
+            marginTop: dc === true?responsiveHeight(1):responsiveHeight(30),
             width:180
           }} 
           label="UserMode" 
@@ -122,7 +150,13 @@ export default function DrawerNavigation({navigation}) {
             fontSize:responsiveFontSize(1.5),
             marginLeft:responsiveWidth(8)
            }}
-             onPress={() =>setDriver(false)}/>
+             onPress={() =>{
+              setDriver(false)
+              dispatch(resetColor())
+              dispatch(drawerColor())
+              dispatch(customerColor1());
+            }}
+             />
           }
           
           <DrawerItem style={{color:"white",marginLeft:responsiveHeight(11)}}
@@ -141,12 +175,12 @@ export default function DrawerNavigation({navigation}) {
             fontSize:responsiveFontSize(1.8)
           }}
         
-          label="Logout" onPress={() => navigation.navigate("Login")} />
+          label="Logout" onPress={() => navigation.navigate("home")} />
         </DrawerContentScrollView>
       )
     }}>
       
-      {driver == false && 
+      {color == false && 
       <Drawer.Screen
         options={{
           headerStyle: {
@@ -177,7 +211,7 @@ export default function DrawerNavigation({navigation}) {
 
       />
     }
-      {driver == false && 
+      {color == false && 
       <Drawer.Screen
         options={{
           headerTitleAlign: 'center',
@@ -206,7 +240,7 @@ export default function DrawerNavigation({navigation}) {
         name="My Jobs"
         component={Jobscreen} />
       }
-     {driver == false && 
+     {color == false && 
       <Drawer.Screen
         options={{
           headerTitleAlign: 'center',
@@ -232,7 +266,7 @@ export default function DrawerNavigation({navigation}) {
         name="Invite a Friend"
         component={InviteFriendScreen} />
       }
-        {driver == false && 
+        {color == false && 
       <Drawer.Screen
         options={{
           headerTitleAlign: 'center',
@@ -269,7 +303,7 @@ export default function DrawerNavigation({navigation}) {
         name="Support"
         component={SupportScreen} />
       }
- {driver == false && 
+ {color == false && 
       <Drawer.Screen
         options={{
           headerTitleAlign: 'center',
@@ -294,7 +328,8 @@ export default function DrawerNavigation({navigation}) {
         name="Settings"
         component={SettingScreen} />
       }
-       {driver == true && (
+      
+       {color == true && (
         <Drawer.Screen
         
           options={{
@@ -331,7 +366,7 @@ export default function DrawerNavigation({navigation}) {
           component={HomeLandingScreen}
         />
       )}
-       {driver == true && (
+       {color == true && (
         <Drawer.Screen
         
           options={{
@@ -359,7 +394,7 @@ export default function DrawerNavigation({navigation}) {
           component={MyJobsScreen}
         />
       )}
-      {driver == true && (
+      {color == true && (
         <Drawer.Screen
         
           options={{
@@ -384,11 +419,11 @@ export default function DrawerNavigation({navigation}) {
 
           }}
           name="My Earnings"
-          component={MyEarning}
+          component={TopTabs}
         />
       )}
      
-       {driver == true && (
+       {color == true && (
         <Drawer.Screen
         
           options={{
@@ -416,7 +451,7 @@ export default function DrawerNavigation({navigation}) {
           component={InviteAFriendScreen}
         />
       )}
-       {driver == true && (
+       {color == true && (
         <Drawer.Screen
         
           options={{
@@ -444,7 +479,7 @@ export default function DrawerNavigation({navigation}) {
           component={SupportDriverScreen}
         />
       )}
-           {driver == true && (
+           {color == true && (
         <Drawer.Screen
         
           options={{
@@ -472,7 +507,7 @@ export default function DrawerNavigation({navigation}) {
           component={NotificationScreen}
         />
       )}
-         {driver == true && (
+         {color == true && (
         <Drawer.Screen
         
           options={{
@@ -500,35 +535,8 @@ export default function DrawerNavigation({navigation}) {
           component={SettingsScreen}
         />
       )}
-       {driver == true && (
-        <Drawer.Screen
-        
-          options={{
-            headerTitleAlign: 'center',
-            headerStyle: {
-              backgroundColor: 'black',
-            },
-            headerTintColor: '#FFFFFF',
-            drawerLabelStyle: {
-              fontSize:responsiveFontSize(2),
-              marginBottom:responsiveHeight(1),
-              marginHorizontal:responsiveWidth(2.5),
-              // fontWeight:"bold",
-              fontFamily:"Poppins-Medium"
-            },
-            drawerIcon: ({focused, size}) => (
-              <Image
-              source={require('../../assets/Icons/setting.png')}
-              style={{height:responsiveHeight(5),width:responsiveWidth(10),position:"absolute"}}
-            />
-           ),
-
-          }}
-          name="Profile"
-          component={ProfileDriverScreen}
-        />
-      )}
-       {driver == true && (
+    
+       {color == true && (
         <Drawer.Screen
         
           options={{

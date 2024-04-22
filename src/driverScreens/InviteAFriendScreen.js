@@ -6,9 +6,24 @@ import {
     responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import sstyles from '../../sstyle';
-
+import Share from 'react-native-share';
 
 const InviteAFriendScreen = () => {
+    const share = () => {
+
+        const options = {
+            message:"simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'"
+        }
+
+
+        Share.open(options)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                err && console.log(err);
+            });
+    }
     return (
         <View style={{ flex: 1, backgroundColor: "black" }}>
             <ScrollView>
@@ -64,7 +79,9 @@ const InviteAFriendScreen = () => {
                         Copy</Text>
                 </View>
 
-                <TouchableOpacity  style={[sstyles.buttonText,{ marginTop:responsiveHeight(20)}]}>
+                <TouchableOpacity  
+                onPress={share}
+                style={[sstyles.buttonText,{ marginTop:responsiveHeight(20)}]}>
                 <Text  style={{
                     fontFamily: "Poppins-Medium",
                     fontSize: responsiveFontSize(2),

@@ -22,7 +22,7 @@ const StartJobScreen = ({ navigation }) => {
         .map((_, index) => `index-${index}`),
     [],
   );
-  const snapPoints = useMemo(() => ['15%', '65%',], []);
+  const snapPoints = useMemo(() => ['63%', '65%',], []);
 
   // callbacks
   const handleSheetChange = useCallback(index => {
@@ -170,6 +170,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     backgroundColor: 'white',
+    height:"100%"
   },
   itemContainer: {
     padding: 6,

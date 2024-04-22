@@ -6,6 +6,8 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
+    Alert,
+    
 } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import {
@@ -76,6 +78,15 @@ export default function DelivaryTypeScreen({ navigation }) {
         console.log(option,"ghjh")
         setSelectedOption(option === selectedOption ? null : option);
     };
+
+    const select = () =>{
+        if( date1==null || date2==null){
+            Alert.alert("","Please select date and time")
+        }
+       { date1 && date2&&
+        navigation.navigate('Click')
+       }
+    }
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -119,15 +130,16 @@ export default function DelivaryTypeScreen({ navigation }) {
                             fontFamily: "Poppins-Medium",
                             fontSize: responsiveFontSize(1.7),
                             color: "#0A0B1E",
-                            marginTop: responsiveHeight(1)
+                            marginTop: responsiveHeight(3.2)
                         }}>Choose your Delivery Type</Text>
                     <View
                         style={{
                             flexDirection: "row",
-                            justifyContent: "space-around",
-                            marginTop: responsiveHeight(1),
+                            justifyContent: "space-between",
+                            marginTop: responsiveHeight(-1),
                             width: "100%",
-                            height: "20%"
+                            height: "20%",
+                            
                         }}>
                         <View>
                             <TouchableOpacity onPress={() => handleOptionSelect("sameday")}>
@@ -157,7 +169,7 @@ export default function DelivaryTypeScreen({ navigation }) {
                                 />
                             </TouchableOpacity>
                         </View>
-                        <View>
+                        <View style={{ marginRight: responsiveWidth(2)}}>
                             <TouchableOpacity onPress={() => handleOptionSelect("express")}>
                                 <Image
                                     style={{
@@ -172,20 +184,23 @@ export default function DelivaryTypeScreen({ navigation }) {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={{ marginHorizontal: responsiveWidth(5) }}>
+                    <View style={{ marginHorizontal: responsiveWidth(5),bottom:responsiveHeight(2) }}>
                         <Text style={{
 
                             fontFamily: "Poppins-Medium",
                             // marginHorizontal:responsiveWidth(5),
-                            fontSize: responsiveFontSize(1.5),
+                            fontSize: responsiveFontSize(1.7),
                             color: "#0A0B1E",
-                            marginTop: responsiveHeight(1)
-                        }}>Schedule a pickup{"\n"}</Text>
+                            // marginTop: responsiveHeight(3.2)
+                        }}>Schedule a pickup</Text>
                         <Text style={{
                             fontFamily: "Poppins-Regular",
                             fontSize: responsiveFontSize(1.4),
-                            color: "#6C6D78"
+                            color: "#6C6D78",
+                            // right:responsiveWidth(2),
+                         
                         }}>NOTE: Schedule Job Cost More & May Take Longer{"\n"}To Find a Driver</Text>
+                       
                     </View>
 
                     <View style={{ flexDirection: "row", marginTop: responsiveHeight(1.5) }}>
@@ -194,7 +209,13 @@ export default function DelivaryTypeScreen({ navigation }) {
                         <View>
 
                             <TextInput
-                                style={{ marginHorizontal: responsiveWidth(4), width: responsiveWidth(90), backgroundColor: "#FFFFFF", marginTop: responsiveHeight(3) }}
+                                style={{ 
+                                    marginHorizontal: responsiveWidth(4),
+                                     width: responsiveWidth(90), 
+                                     backgroundColor: "#FFFFFF",
+                                     bottom:responsiveHeight(0.5),
+                                     marginTop:responsiveHeight(-1)
+                                     }}
 
                                 label="Select Date"
                                 mode="outlined"
@@ -236,7 +257,13 @@ export default function DelivaryTypeScreen({ navigation }) {
                                 </View>
                             </TouchableOpacity>
                             <TextInput
-                                style={{ marginHorizontal: responsiveWidth(4), width: responsiveWidth(90), backgroundColor: "#FFFFFF", marginTop: responsiveHeight(3) }}
+                                style={{ 
+                                    marginHorizontal: responsiveWidth(4),
+                                     width: responsiveWidth(90), backgroundColor: "#FFFFFF",
+                                      marginTop: responsiveHeight(2.5) ,
+                                      bottom:responsiveHeight(0.4)
+                                
+                                }}
 
                                 label="Select Time"
                                 mode="outlined"
@@ -251,7 +278,7 @@ export default function DelivaryTypeScreen({ navigation }) {
                                 placeholder="00-00-0000"
                                 placeholderTextColor={"#C8C8C8"}
                                 value={date2}
-                                onChangeText={setDate1}
+                                onChangeText={setDate2}
 
                             />
                             <TouchableOpacity onPress={showDatePicker2}>
@@ -306,7 +333,7 @@ export default function DelivaryTypeScreen({ navigation }) {
                     />
                     <TouchableOpacity  style={[sstyles.buttonText, { marginTop: responsiveHeight(5),bottom:responsiveHeight(1) }]}
                         title="Go to Details"
-                        onPress={() => navigation.navigate('Click')}>
+                        onPress={select}>
                         <Text 
                        style={{
                         fontFamily: "Poppins-Medium",

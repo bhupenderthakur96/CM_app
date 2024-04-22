@@ -77,7 +77,6 @@ const Jobscreen = () => {
           <Tab.Screen name="ONGOING JOB" component={OngoinJob} />
         </Tab.Navigator>
       </View>
-      <Text>Jobscreen</Text>
     </View>
   );
 };

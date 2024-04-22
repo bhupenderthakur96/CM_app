@@ -9,39 +9,39 @@ import {
 
 
 
-const MyEarning = () => {
+const WeeklyScreen = () => {
   const barData = [
     {
       value: 230,
-      label: '1st hour',
+      label: 'Mon',
       frontColor: '#8AE08A',
       sideColor: '#23A7F3',
       topColor: '#92e6f6',
     },
     {
       value: 500,
-      label: '2nd hour',
+      label: 'Tues',
       frontColor: '#8AE08A',
       sideColor: '#68BCD7',
       topColor: '#9FD4E5',
     },
     {
       value: 375,
-      label: '3rd hour',
+      label: 'Wed',
       frontColor: '#8AE08A',
       sideColor: '#0FAAAB',
       topColor: '#66C9C9',
     },
     {
       value: 250,
-      label: '4th hour',
+      label: 'Thus',
       frontColor: '#8AE08A',
       sideColor: '#36D9B2',
       topColor: '#7DE7CE',
     },
     {
       value: 320,
-      label: '5th hour',
+      label: 'Fri',
       frontColor: '#8AE08A',
       sideColor: '#85E0E0',
       topColor: '#B0EAEB',
@@ -106,7 +106,7 @@ const MyEarning = () => {
               <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#C8C8C8" }}>PickUp</Text>
               <Text style={{ fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), color: "#0A0B1E" }}>Westhiemer RD, Santa Ana</Text>
               <Text style={{ marginTop: responsiveHeight(0.6), fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.3), color: "#C8C8C8" }}>Drop off</Text>
-              <Text style={{marginTop: responsiveHeight(0.3), fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), marginTop: responsiveHeight(0.3), color: "#0A0B1E" }}>Preston Rd, Inglewood, Maine</Text>
+              <Text style={{ marginTop: responsiveHeight(0.3),fontFamily: "Poppins-Regular", fontSize: responsiveFontSize(1.5), marginTop: responsiveHeight(0.3), color: "#0A0B1E" }}>Preston Rd, Inglewood, Maine</Text>
             </View>
           </View>
           <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: responsiveWidth(5.5), marginTop: responsiveHeight(2) }}>
@@ -166,6 +166,6 @@ const MyEarning = () => {
   )
 }
 
-export default MyEarning
+export default WeeklyScreen
 
 const styles = StyleSheet.create({})  
